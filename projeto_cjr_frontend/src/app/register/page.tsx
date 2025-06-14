@@ -1,4 +1,4 @@
-export default function Home() {
+export default function Register() {
   return (
     /* conteiner principal da tela */
     <div className="flex h-screen"> 
@@ -9,7 +9,7 @@ export default function Home() {
         ></div>
         {/* lado direito da tela */}
         <div className="w-3/7 flex flex-col items-center h-full bg-blue-900 p-16" /*style={{ backgroundImage: "url('/imagens/bluebackground.jpg')"}} */>
-            <h1 className="text-center font-bold text-5xl p-5 text-white">Cadastre-se!</h1>
+            <h1 className="text-center font-bold text-4xl p-5 text-white">Cadastre-se</h1>
             <form className="flex flex-col items-center w-full">
                 <input 
                     className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
