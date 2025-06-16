@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     /* conteiner principal da tela */
@@ -32,12 +34,13 @@ export default function Home() {
                     >
                         Entrar
                     </button>
-                    <button 
-                        className="rounded-md bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold w-30 h-12 py-2 px-4 mx-10 my-10"
+                    <Link 
+                        href="/register"
+                        className="inline-flex items-center justify-center rounded-md bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold w-30 h-12 py-2 px-4 mx-10 my-10"
                         type="button"
                     >
                         Criar Conta
-                    </button>
+                    </Link>
                 </div>
             </form>
         </div>
