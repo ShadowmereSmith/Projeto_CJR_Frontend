@@ -1,12 +1,12 @@
 import React from 'react';
 
 type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
+  isOpen: boolean; // Controla se o modal está aberto ou fechado
+  onClose: () => void; // Função para fechar o modal (deve receber setIsOpen(false) como parâmetro, ele executa essa função quando o botão de fechar é clicado)
 }
 
-export default function ModalComentario() { 
+export default function ModalComentario({isOpen, onClose}: ModalProps) { // modal recebe props para controlar seu estado
+  if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada
   return (
     <div className="fixed inset-0 z-50">
       <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -19,8 +19,17 @@ export default function ModalComentario() {
             <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
               I
             </button>
+            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
+              I
+            </button>
+            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
+              I
+            </button>
+            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
+              I
+            </button>
           </div>
-          <div className="h-0.5 bg-blue-900 w-full"></div>
+          <div className="h-px bg-blue-900 w-full"></div>
           <textarea
             className="flex-grow w-full p-4 rounded-lg font-normal focus:outline-none resize-none"
             placeholder="Escreva seu comentário aqui..."
@@ -29,6 +38,7 @@ export default function ModalComentario() {
         </div>
         <div className="flex w-full justify-end items-center mr-24">
           <button
+            onClick={onClose}
             className="rounded-md bg-blue-900 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-2 px-3 mx-4"
           >
             Cancelar
