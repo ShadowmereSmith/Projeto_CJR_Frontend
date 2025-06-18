@@ -9,9 +9,9 @@ type ModalProps = {
 export default function ModalComentario({isOpen, onClose}: ModalProps) { // modal recebe props para controlar seu estado
   if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black opacity-60"></div>
-      <div className="rounded-xl fixed top-24 bottom-24 left-80 right-80 flex flex-col bg-blue-900 p-10">
+      <div className="relative min-w-[45%] max-w-[70%] h-[55vh] bg-blue-900 p-6 rounded-xl flex flex-col overflow-hidden z-50">
         <div className="rounded-xl flex flex-col flex-grow items-center justify-center bg-blue-300 mb-4">
           <div className="w-full flex flex-row justify-start items-center px-2">
             <button 
