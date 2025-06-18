@@ -36,6 +36,7 @@ export default function ModalAvaliacao({isOpen, onClose}: ModalProps) { // modal
           <option value="" disabled>Disciplina</option>
           <option value="id-13" className="text-black">Cálculo 2</option> {/* Exemplo de disciplina, pode ser substituído por uma lista dinâmica */}
           <option value="id-14" className="text-black">Poledance</option>
+          <option value="id-14" className="text-black">FORRÓ</option>
         </select>
         <div className="rounded-xl flex flex-col flex-grow items-center justify-center bg-blue-300 mb-4">
           <div className="w-full flex flex-row justify-start items-center px-2">
