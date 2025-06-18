@@ -1,4 +1,5 @@
 import React from 'react';
+import { Bold, Italic, Heading, Link, Image, HelpCircle } from "lucide-react";
 
 type ModalProps = {
   isOpen: boolean; // Controla se o modal está aberto ou fechado
@@ -13,20 +14,29 @@ export default function ModalComentario({isOpen, onClose}: ModalProps) { // moda
       <div className="rounded-xl fixed top-24 bottom-24 left-80 right-80 flex flex-col bg-blue-900 p-10">
         <div className="rounded-xl flex flex-col flex-grow items-center justify-center bg-blue-300 mb-4">
           <div className="w-full flex flex-row justify-start items-center px-2">
-            <button className="p-1 my-1 pl-4 bg-green-500 hover:bg-green-900">  
-              B
+            <button 
+              title="Negrito" 
+              className="py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><Bold size={24} strokeWidth={4}/>
             </button>
-            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
-              I
+            <button
+              title="Itálico" 
+              className="pl-1 py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><Italic size={24} strokeWidth={4}/>
             </button>
-            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
-              I
+            <button 
+              title="Título"
+              className="pl-1 py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><Heading size={24} strokeWidth={4}/>
             </button>
-            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
-              I
+            <button
+              title="Link" 
+              className="pl-2 py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><Link size={24} strokeWidth={4}/>
             </button>
-            <button className="p-1 my-1 pl-4 bg-blue-500 hover:bg-blue-900">  
-              I
+            <button 
+              title="Imagem"
+              className="pl-2 py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><Image size={24} strokeWidth={4}/>
+            </button>
+            <button 
+              title="Ajuda"
+              className="pl-2 py-1 text-blue-900 hover:text-blue-800 active:text-blue-700"><HelpCircle size={24} strokeWidth={4}/>
             </button>
           </div>
           <div className="h-px bg-blue-900 w-full"></div>
