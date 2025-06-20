@@ -1,6 +1,29 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+    const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [erro, setErro] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        if ((email === 'teste@gmail.com' && senha === '1234') || (email === 'mp10@gmail.com' && senha === '4321')) {
+            // Simula um login bem-sucedido
+            router.push(`/feed-logado/${email}`); // Redireciona para a página inicial após o login, rotas dinâmicas (alterar depois para id do usuário)
+        }
+        else {
+            // Simula um erro de login
+            setErro('Email ou senha incorretos');
+        }
+    };
+
   return (
     /* conteiner principal da tela */
     <div className="flex h-screen"> 
@@ -12,12 +35,17 @@ export default function Home() {
         {/* lado direito da tela */}
         <div className="w-3/7 flex flex-col items-center h-full bg-blue-900 p-16" /*style={{ backgroundImage: "url('/imagens/bluebackground.jpg')"}} */>
             <h1 className="text-center font-bold text-5xl p-10 text-white">Avaliação de Professores</h1>
-            <form className="flex flex-col items-center w-full">
+            <form 
+                className="flex flex-col items-center w-full"
+                onSubmit={handleSubmit}
+            >
                 <input 
                     className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
                     placeholder="Email"
                     type="email"
                     name="email"
+                    value={email}
+                    onChange={(e) => {setEmail(e.target.value); setErro('');}}
                     required   
                 ></input>
                 <input 
@@ -25,6 +53,8 @@ export default function Home() {
                     placeholder="Senha"
                     type="password"
                     name="senha"
+                    value={senha}
+                    onChange={(e) => {setSenha(e.target.value); setErro('');}}
                     required
                 ></input>
                 <div>
@@ -42,6 +72,11 @@ export default function Home() {
                         Criar Conta
                     </Link>
                 </div>
+                {erro && (
+                    <p className="bg-red-200 text-red-900 font-bold text-center mt-2 px-4 py-2 rounded-lg">
+                        {erro}
+                    </p>
+                )}
             </form>
         </div>
     </div>
