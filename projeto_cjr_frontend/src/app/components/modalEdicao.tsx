@@ -62,7 +62,7 @@ export default function ModalEdicao({isOpen, onClose}: ModalProps) { // modal re
           <button
             className="rounded-md bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-2 px-3"
           >
-            Comentar
+            Editar
           </button>
         </div>
       </div>

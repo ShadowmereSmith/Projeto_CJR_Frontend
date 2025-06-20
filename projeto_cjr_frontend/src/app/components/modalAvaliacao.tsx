@@ -82,7 +82,7 @@ export default function ModalAvaliacao({isOpen, onClose}: ModalProps) { // modal
           <button
             className="rounded-md bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-2 px-3"
           >
-            Comentar
+            Avaliar
           </button>
         </div>
       </div>
