@@ -22,10 +22,14 @@
         "name": "next"
       }
     ],
+    "baseUrl": "src",
     "paths": {
+
+      "@/*": ["*"]
+
       "@/*": [
         "./src/*"
-      ]
+  
     }
   },
   "include": [
@@ -34,7 +38,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
+
+  "exclude": ["node_modules"]
+=======
   "exclude": [
     "node_modules"
   ]
+
 }
