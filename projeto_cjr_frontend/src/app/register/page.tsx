@@ -18,7 +18,7 @@ export default function Register() {
         
         if (email !== 'teste@gmail.com' && email !== 'mp10@gmail.com') {
             // Simula um cadastro bem-sucedido
-            router.push(`/feed-logado/${email}`); // Redireciona para a página inicial após o cadastro, rotas dinâmicas (alterar depois para id do usuário)
+            router.push(`/login`);
         }
         else {
             // Simula um erro de login

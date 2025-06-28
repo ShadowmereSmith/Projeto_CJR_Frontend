@@ -16,7 +16,7 @@ export default function Home() {
         
         if ((email === 'teste@gmail.com' && senha === '1234') || (email === 'mp10@gmail.com' && senha === '4321')) {
             // Simula um login bem-sucedido
-            router.push(`/feed-logado/${email}`); // Redireciona para a página inicial após o login, rotas dinâmicas (alterar depois para id do usuário)
+            router.push(`/feed-logado`); 
         }
         else {
             // Simula erro de login
