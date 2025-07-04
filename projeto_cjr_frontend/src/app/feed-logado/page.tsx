@@ -5,21 +5,35 @@ import ModalComentario from 'app/components/modalComentario';
 import ModalEdicao from 'app/components/modalEdicao';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { apiService } from '@/utils/api';
+import { jwtDecode } from 'jwt-decode';
+
 
 export default function Page({ params }: { params: { id: string } }) {
 
   const router = useRouter();
-  const userId = params?.id ?? "123";
- // Simulando um ID de usuário logado (substituir depois por autenticação real com useAuth)
 
   const handleLogout = () => {
-    // Simula o logout e redireciona para a página de login
-    router.push('/login');
+    const confirmed = window.confirm('Tem certeza que deseja sair?');
+    if (confirmed) {
+      localStorage.removeItem('token');
+      router.push('/login');
+    }
   }
 
   const handlePerfil = () => {
-    // Redirecionar para a página de perfil
-    router.push(`/perfil-usuario-logado/${userId}`);
+    const token = localStorage.getItem('token');
+    let userId = null;
+
+    if (token) {
+      const decoded = jwtDecode(token);
+      userId = decoded.sub;
+      router.push(`/perfil-usuario-logado/${userId}`);
+    }
+    else {
+      console.error('Token não encontrado');
+      router.push('/login');
+    }
   };
 
   return (
@@ -47,7 +61,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     ></img>
                 </button>
 
-                <button className="flex items-center justify-center p-2 rounded-4xl">
+                <button className="flex items-center justify-center p-2 rounded-4xl" onClick={() => handleLogout()}>
                     <img src="https://cdn-icons-png.flaticon.com/512/1286/1286853.png" alt="Sair"
                   className="w-15 h-12 pr-5 p-2 rounded-2xl cursor-pointer hover:scale-105 hover:bg-blue-600 transition-all duration-300"></img>
 
