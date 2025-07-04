@@ -11,3 +11,9 @@ export interface Avaliacao {
   disciplina?: Disciplina;
   comentarios?: Comentario[];
 }
+
+// Tipo para criação (omitindo campos auto-gerados)
+export type CreateAvaliacaoDto = Omit<Avaliacao, 'id' | 'createdAt' | 'updatedAt' | 'usuario' | 'professor' | 'disciplina' | 'comentarios'>;
+
+// Tipo para atualização (todos campos opcionais exceto id)
+export type UpdateAvaliacaoDto = Partial<Omit<Avaliacao, 'id'>> & { id: number };
