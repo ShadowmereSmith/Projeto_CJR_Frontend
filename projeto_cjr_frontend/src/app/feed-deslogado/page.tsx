@@ -1,3 +1,5 @@
+import CardProfessor from "../components/cardProfessor";
+
 export default function Home() {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
@@ -5,7 +7,7 @@ export default function Home() {
         {/* Header */}
         <div className="w-screen h-18 flex flex-row items-top justify-between p-4 bg-blue-900">
 
-          <img src="https://cdn.blog.estrategiavestibulares.com.br/vestibulares/wp-content/uploads/2022/09/UnB-logo.png" alt="UNB"
+          <img src="unb-logo.png" alt="UNB"
             className="size-10 w-24 pl-5"></img>
 
           <button className="cursor-pointer bg-blue-600 text-white p-3 pt-1.5 rounded-lg
@@ -19,7 +21,7 @@ export default function Home() {
           <div className="flex flex-row h-10 items-top justify-around pt-10">
 
             <div>
-              <h1 className="font-bold text-4xl">Novos Professores</h1>
+              <h1 className="font-bold text-4xl text-black">Novos Professores</h1>
             </div>
 
             <div className="relative flex flex-row items-center justify-center pt-5 gap-0">
@@ -42,65 +44,26 @@ export default function Home() {
 
                 <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
                   alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Sandro Curió</h2>
-                <p className="text-2sm">Disciplina: Matemática</p>
+                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
+                <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
+                <p className="text-2sm text-white">Disciplina: Matemática</p>
 
               </div>
             </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 1</h2>
-                <p className="text-2sm">Disciplina: Cáuculo 1</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 2</h2>
-                <p className="text-2sm">Disciplina: Cáuculo 2</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 3</h2>
-                <p className="text-2sm">Disciplina: APC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
+            
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
 
           </div>
 
-          <div className=" cursor-default flex flex-col items-center justify-center pt-3 font-extrabold font-serif text-3xl">
+          <div className=" cursor-default flex flex-col items-center justify-center pt-3 text-black font-extrabold font-serif text-3xl">
             <p>_____________________________________________</p>
           </div>
 
           <div className="flex flex-row items-center justify-around pt-10">
-            <h1 className="font-bold text-4xl">Todos os Professores</h1>
+            <h1 className="font-bold text-4xl text-black">Todos os Professores</h1>
             <button className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3
                  border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl">
                   Ordenar</button>
@@ -113,100 +76,23 @@ export default function Home() {
 
                 <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
                   alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
+                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
                 <h2 className="text-2xl font-bold">Sandro Curió</h2>
                 <p className="text-2sm">Disciplina: Matemática</p>
 
               </div>
             </button>
 
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 1</h2>
-                <p className="text-2sm">Disciplina: Cáuculo 1</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 2</h2>
-                <p className="text-2sm">Disciplina: Cáuculo 2</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 3</h2>
-                <p className="text-2sm">Disciplina: APC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-2xl" />
-                <h2 className="text-2xl font-bold">Professor 4</h2>
-                <p className="text-2sm">Disciplina: OAC</p>
-
-              </div>
-            </button>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
+            <CardProfessor/>
 
           </div>
 

@@ -7,7 +7,7 @@ const FaEdit = FaIcons.FaEdit as unknown as React.FC<any>
 const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
 import RespostaComentario from './RespostaComentario'
-import { Comentario } from './comentarios'
+import { Comentario } from '../comentarios'
 
 type Props = {
   comentario: Comentario
@@ -15,11 +15,11 @@ type Props = {
 
 export default function ComentarioCard({ comentario }: Props) {
   return (
-    <div className="bg-[#002147] text-white rounded-xl p-4 mb-6 shadow-md">
+    <div className="bg-blue-900 text-white rounded-xl p-4 mb-6 shadow-md">
       <div className="flex justify-between items-start">
         <div className="flex items-start gap-3">
           <Image
-            src="/default-avatar.png"
+            src="/Perfil_default.png"
             alt="Avatar"
             width={60}
             height={40}
