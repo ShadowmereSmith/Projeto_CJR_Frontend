@@ -16,130 +16,187 @@ import { CreateAvaliacaoDto } from '../types/avaliacao';
 import { UpdateAvaliacaoDto } from '../types/avaliacao';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001', // Alterar para o endereço do backend (ver localhost depois)
-});  
+  baseURL: 'http://localhost:3001',
+});
 
-const createUser = async (dados : CreateUsuarioDto, id : number) : Promise<User> => {
-  const response = await api.post(`/usuarios`, dados);
+//
+// USUÁRIO
+//
+
+const createUser = async (dados: CreateUsuarioDto): Promise<User> => {
+  const response = await api.post('/usuarios', dados);
   return response.data;
-}
+};
 
-const getUsers = async () : Promise<User> => {
-    const response = await api.get('/usuarios');
-    return response.data;
-}
+const getUsers = async (): Promise<User[]> => {
+  const response = await api.get('/usuarios');
+  return response.data;
+};
 
-const getUser = async (id : number) : Promise<User> => {
+const getUser = async (id: number): Promise<User> => {
   const response = await api.get(`/usuarios/${id}`);
   return response.data;
-}
+};
 
-const updateUser = async (dados : UpdateUsuarioDto, id : number) : Promise<User> => {
+const updateUser = async (dados: UpdateUsuarioDto, id: number): Promise<User> => {
   const response = await api.put(`/usuarios/${id}`, dados);
   return response.data;
-}
+};
 
-const deleteUser = async (id : number) : Promise<User> => {
+const deleteUser = async (id: number): Promise<User> => {
   const response = await api.delete(`/usuarios/${id}`);
   return response.data;
-}
+};
 
-const createProfessor = async (dados : CreateProfessorDto, id : number) : Promise<Professor> => {
-  const response = await api.post(`/professores`, dados);
+
+//
+// PROFESSOR
+//
+
+const createProfessor = async (dados: CreateProfessorDto): Promise<Professor> => {
+  const response = await api.post('/professores', dados);
   return response.data;
-}
+};
 
-const getProfessores = async () : Promise<Professor> => {
-    const response = await api.get('/professores');
-    return response.data;
-}
+const getProfessores = async (): Promise<Professor[]> => {
+  const response = await api.get('/professores');
+  return response.data;
+};
 
-const getProfessor = async (id : number) : Promise<Professor> => {
+const getProfessor = async (id: number): Promise<Professor> => {
   const response = await api.get(`/professores/${id}`);
   return response.data;
-}
+};
 
-const updateProfessor = async (dados : UpdateProfessorDto, id : number) : Promise<Professor> => {
+const updateProfessor = async (dados: UpdateProfessorDto, id: number): Promise<Professor> => {
   const response = await api.put(`/professores/${id}`, dados);
   return response.data;
-}
+};
 
-const deleteProfessor = async (id : number) : Promise<Professor> => {
+const deleteProfessor = async (id: number): Promise<Professor> => {
   const response = await api.delete(`/professores/${id}`);
   return response.data;
-}
+};
 
-const createDisciplina = async (dados : CreateDisciplinaDto, id : number) : Promise<Disciplina> => {
-  const response = await api.post(`/disciplinas`, dados);
+
+//
+// DISCIPLINA
+//
+
+const createDisciplina = async (dados: CreateDisciplinaDto): Promise<Disciplina> => {
+  const response = await api.post('/disciplinas', dados);
   return response.data;
-}
+};
 
-const getDisciplinas = async () : Promise<Disciplina> => {
-    const response = await api.get('/disciplinas');
-    return response.data;
-}
+const getDisciplinas = async (): Promise<Disciplina[]> => {
+  const response = await api.get('/disciplinas');
+  return response.data;
+};
 
-const getDisciplina = async (id : number) : Promise<Disciplina> => {
+const getDisciplina = async (id: number): Promise<Disciplina> => {
   const response = await api.get(`/disciplinas/${id}`);
   return response.data;
-}
+};
 
-const updateDisciplina = async (dados : UpdateDisciplinaDto, id : number) : Promise<Disciplina> => {
+const updateDisciplina = async (dados: UpdateDisciplinaDto, id: number): Promise<Disciplina> => {
   const response = await api.put(`/disciplinas/${id}`, dados);
   return response.data;
-}
+};
 
-const deleteDisciplina = async (id : number) : Promise<Disciplina> => {
+const deleteDisciplina = async (id: number): Promise<Disciplina> => {
   const response = await api.delete(`/disciplinas/${id}`);
   return response.data;
-}
+};
 
-const createComentario = async (dados : CreateComentarioDto, id : number) : Promise<Comentario> => {
-  const response = await api.post(`/comentarios`, dados);
+
+//
+// COMENTÁRIO
+//
+
+const createComentario = async (dados: CreateComentarioDto): Promise<Comentario> => {
+  const response = await api.post('/comentarios', dados);
   return response.data;
-}
+};
 
-const getComentarios = async () : Promise<Comentario> => {
-    const response = await api.get('/comentarios');
-    return response.data;
-}
+const getComentarios = async (): Promise<Comentario[]> => {
+  const response = await api.get('/comentarios');
+  return response.data;
+};
 
-const getComentario = async (id : number) : Promise<Comentario> => {
+const getComentario = async (id: number): Promise<Comentario> => {
   const response = await api.get(`/comentarios/${id}`);
   return response.data;
-}
+};
 
-const updateComentario = async (dados : UpdateComentarioDto, id : number) : Promise<Comentario> => {
+const updateComentario = async (dados: UpdateComentarioDto, id: number): Promise<Comentario> => {
   const response = await api.put(`/comentarios/${id}`, dados);
   return response.data;
-}
+};
 
-const deleteComentario = async (id : number) : Promise<Comentario> => {
+const deleteComentario = async (id: number): Promise<Comentario> => {
   const response = await api.delete(`/comentarios/${id}`);
   return response.data;
-}
+};
 
-const createAvaliacao = async (dados : CreateAvaliacaoDto, id : number) : Promise<Avaliacao> => {
-  const response = await api.post(`/avaliacoes`, dados);
+
+//
+// AVALIAÇÃO
+//
+
+const createAvaliacao = async (dados: CreateAvaliacaoDto): Promise<Avaliacao> => {
+  const response = await api.post('/avaliacoes', dados);
   return response.data;
-}
+};
 
-const getAvaliacoes = async () : Promise<Avaliacao> => {
-    const response = await api.get('/avaliacoes');
-    return response.data;
-}
+const getAvaliacoes = async (): Promise<Avaliacao[]> => {
+  const response = await api.get('/avaliacoes');
+  return response.data;
+};
 
-const getAvaliacao = async (id : number) : Promise<Avaliacao> => {
+const getAvaliacao = async (id: number): Promise<Avaliacao> => {
   const response = await api.get(`/avaliacoes/${id}`);
   return response.data;
-}
+};
 
-const updateAvaliacao = async (dados : UpdateAvaliacaoDto, id : number) : Promise<Avaliacao> => {
+const updateAvaliacao = async (dados: UpdateAvaliacaoDto, id: number): Promise<Avaliacao> => {
   const response = await api.put(`/avaliacoes/${id}`, dados);
   return response.data;
-}
+};
 
-const deleteAvaliacao = async (id : number) : Promise<Avaliacao> => {
+const deleteAvaliacao = async (id: number): Promise<Avaliacao> => {
   const response = await api.delete(`/avaliacoes/${id}`);
   return response.data;
-}
+};
+
+
+//
+// EXPORT
+//
+
+export const apiService = {
+  createUser,
+  getUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+  createProfessor,
+  getProfessores,
+  getProfessor,
+  updateProfessor,
+  deleteProfessor,
+  createDisciplina,
+  getDisciplinas,
+  getDisciplina,
+  updateDisciplina,
+  deleteDisciplina,
+  createComentario,
+  getComentarios,
+  getComentario,
+  updateComentario,
+  deleteComentario,
+  createAvaliacao,
+  getAvaliacoes,
+  getAvaliacao,
+  updateAvaliacao,
+  deleteAvaliacao
+};
