@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { apiService } from 'utils/api';
 
 export default function Register() {
 
@@ -15,14 +16,14 @@ export default function Register() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setErro('');
         
-        if (email !== 'teste@gmail.com' && email !== 'mp10@gmail.com') {
-            // Simula um cadastro bem-sucedido
-            router.push(`/login`);
-        }
-        else {
-            // Simula um erro de login
-            setErro('Usuário já cadastrado. Por favor, tente novamente com outro email.');
+        try{
+            const response = await apiService.register(email, senha, nome, curso, departamento);
+            console.log(response);
+            router.push('/login');
+        } catch (error) {
+            setErro('Erro ao cadastrar usuário. Verifique os dados e tente novamente.');
         }
     };
 

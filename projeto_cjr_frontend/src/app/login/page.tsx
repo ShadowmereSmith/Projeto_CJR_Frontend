@@ -3,26 +3,26 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { apiService } from 'utils/api';
 
 export default function Home() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [erro, setErro] = useState('');
 
-    const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [erro, setErro] = useState('');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErro('');
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        
-        if ((email === 'teste@gmail.com' && senha === '1234') || (email === 'mp10@gmail.com' && senha === '4321')) {
-            // Simula um login bem-sucedido
-            router.push(`/feed-logado`); 
-        }
-        else {
-            // Simula erro de login
-            setErro('Email ou senha incorretos');
-        }
-    };
+    try {
+      const data = await apiService.login(email, senha); 
+      localStorage.setItem('token', data.token);
+      router.push('/feed-logado');
+    } catch (error) {
+      setErro('Email ou senha incorretos');
+    }
+  };
 
   return (
     /* conteiner principal da tela */

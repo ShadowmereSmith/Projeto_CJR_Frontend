@@ -168,6 +168,23 @@ const deleteAvaliacao = async (id: number): Promise<Avaliacao> => {
   return response.data;
 };
 
+//
+// LOGIN
+//
+
+const login = async (email: string, senha: string): Promise<{ token: string }> => {
+  const response = await api.post('/auth/login', { email, senha });
+  return response.data;
+};
+
+//
+// REGISTER
+//
+
+const register = async (email: string, senha: string, nome: string, curso: string, departamento: string): Promise<{ id: number, email: string }> => {
+  const response = await api.post('/auth/register', { email, senha, nome, curso, departamento });
+  return response.data;
+};
 
 //
 // EXPORT
@@ -198,5 +215,7 @@ export const apiService = {
   getAvaliacoes,
   getAvaliacao,
   updateAvaliacao,
-  deleteAvaliacao
+  deleteAvaliacao,
+  login,
+  register
 };
