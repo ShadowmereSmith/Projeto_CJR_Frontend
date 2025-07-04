@@ -6,10 +6,10 @@ export interface Avaliacao {
   conteudo: string;
   createdAt: string;
   updatedAt: string;
-  usuario?: User;
-  professor?: Professor;
-  disciplina?: Disciplina;
-  comentarios?: Comentario[];
+  usuario: User;
+  professor: Professor;
+  disciplina: Disciplina;
+  comentarios: Comentario[];
 }
 
 // Tipo para criação (omitindo campos auto-gerados)

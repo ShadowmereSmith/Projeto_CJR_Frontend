@@ -4,10 +4,14 @@ import * as FaIcons from 'react-icons/fa'
 const FaArrowLeft = FaIcons.FaArrowLeft as unknown as React.FC<any>
 
 import Header from '../Header'
-import ComentarioCard from '../ComentarioCard'
-import comentarios from '../comentariosFake'
+import AvaliacaoCard from '../AvaliacaoCard'
+import { Avaliacao } from '../../types/avaliacao'
 
-export default function ComentariosEmAvaliacaoPage() {
+interface Props {
+  avaliacao: Avaliacao
+}
+
+export default function ComentariosEmAvaliacaoPage({ avaliacao } : Props) {
   return (
     <>
       <Header />
@@ -17,9 +21,7 @@ export default function ComentariosEmAvaliacaoPage() {
           <h1 className="text-2xl font-bold text-blue-900">Comentários da Avaliação</h1>
         </div>
         <div className="px-6">
-          {comentarios.map((c, i) => (
-            <ComentarioCard key={i} comentario={c} />
-          ))}
+            <AvaliacaoCard avaliacao = {avaliacao}/>
         </div>
       </main>
     </>

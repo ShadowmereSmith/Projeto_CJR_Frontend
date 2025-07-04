@@ -5,8 +5,8 @@ export interface Comentario {
   conteudo: string;
   createdAt: string;
   updatedAt: string;
-  usuario?: User;
-  avaliacao?: Avaliacao;
+  usuario: User;
+  avaliacao: Avaliacao;
 }
 
 // Tipo para criação (omitindo campos auto-gerados)
