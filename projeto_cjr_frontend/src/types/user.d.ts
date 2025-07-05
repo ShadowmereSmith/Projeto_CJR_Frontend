@@ -8,8 +8,8 @@ export interface User {
     foto_perfil?: Buffer | null;
     createdAt: string;
     updatedAt: string;
-    avaliacoes?: Avaliacao[];
-    comentarios?: Comentario[];
+    avaliacoes: Avaliacao[];
+    comentarios: Comentario[];
 }
 
 // Tipo para criação (omitindo campos auto-gerados)

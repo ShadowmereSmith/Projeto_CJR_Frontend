@@ -3,8 +3,8 @@ export interface Disciplina {
   nome: string;
   createdAt: string;
   updatedAt: string;
-  professores?: ProfessorDisciplina[];
-  avaliacoes?: Avaliacao[];
+  professores: ProfessorDisciplina[];
+  avaliacoes: Avaliacao[];
 }
 
 // Tipo para criação (omitindo campos auto-gerados)

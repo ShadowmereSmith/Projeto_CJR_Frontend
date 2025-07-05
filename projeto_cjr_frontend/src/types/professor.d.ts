@@ -4,8 +4,8 @@ export interface Professor {
   departamento: string;
   createdAt: string;
   updatedAt: string;
-  disciplinas?: ProfessorDisciplina[];
-  avaliacoes?: Avaliacao[];
+  disciplinas: ProfessorDisciplina[];
+  avaliacoes: Avaliacao[];
 }
 
 // Tipo para criação (omitindo campos auto-gerados)
