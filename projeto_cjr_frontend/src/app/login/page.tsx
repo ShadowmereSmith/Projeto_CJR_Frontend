@@ -40,7 +40,7 @@ export default function Home() {
                 onSubmit={handleSubmit}
             >
                 <input 
-                    className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
+                    className="rounded-lg font-normal text-black bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
                     placeholder="Email"
                     type="email"
                     name="email"
@@ -49,7 +49,7 @@ export default function Home() {
                     required   
                 ></input>
                 <input 
-                    className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
+                    className="rounded-lg font-normal text-black bg-white hover:bg-gray-100 focus:bg-gray-100 w-110 h-12 m-2 px-2 placeholder-gray-400 focus:outline-none" 
                     placeholder="Senha"
                     type="password"
                     name="senha"

@@ -1,9 +1,16 @@
-import * as FaIcons from 'react-icons/fa'
-import CardComentarioProfessor from '../components/CardComentarioProfessor';
+import { Professor } from '../../../types/professor'
+import { apiService } from '../../../utils/api'
+import AvaliacaoCardProfessor from '../../components/AvaliacaoCardProfessor'
+import HeaderLogado from '@/app/components/HeaderLogado'
 
-import HeaderLogado from '../components/HeaderLogado'
+interface Props {
+  params: { id: string }
+}
 
-export default function Home() {
+export default async function Home({ params }: Props) {
+  const id = parseInt(params.id)
+  const professor: Professor = await apiService.getProfessor(id)
+  
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
@@ -20,6 +27,7 @@ export default function Home() {
 
         <div className="flex flex-col min-h-screen w-2xl bg-white border-r-3 border-l-3 border-gray-800">
             <div className="bg-blue-500 h-45 w-full">
+
                 <img src="/sandro-curio.jpg" alt="Perfil do Professor"
                   className="w-40 h-40 rounded-full ml-10 mt-25">
                 </img>
@@ -28,7 +36,7 @@ export default function Home() {
             <div className="flex flex-rol items-start justify-between p-10 border-b-3 border-gray-800">
 
                 <div className="flex flex-col items-start justify-start gap-2 pt-15">
-                    <h1 className="text-3xl font-bold text-blue-900">Sandro Curió</h1>
+                    <h1 className="text-3xl font-bold text-blue-900">{professor.nome}</h1>
 
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-email.png" 
@@ -39,7 +47,7 @@ export default function Home() {
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-dept.webp" 
                         alt="Dept:" className="w-7 h-6"></img>
-                        <p className="text-lg text-gray-800">CIC / dept. Ciência da computação</p>
+                        <p className="text-lg text-gray-800">{professor.departamento}</p>
                     </div>
                 </div>
 
@@ -51,15 +59,12 @@ export default function Home() {
                   Avaliações
                 </h2>
 
-                {/* Avaliações */}
-
-                <div className="flex flex-col items-center justify-center gap-5 p-2 ">
+                {/* Card de publicação */}
                 
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
+                <div className="flex flex-col items-center justify-center gap-5 p-2 ">
+                  {professor.avaliacoes.map((r, i) => (
+                    <AvaliacaoCardProfessor key={i} avaliacao={r} />
+                  ))}
 
                 </div>
 

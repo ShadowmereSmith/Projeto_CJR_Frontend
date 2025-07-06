@@ -44,7 +44,7 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
-        
+
         <HeaderLogado/>
 
         <div>

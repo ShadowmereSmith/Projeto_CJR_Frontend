@@ -1,7 +1,16 @@
-import HeaderDeslogado from "../components/HeaderDeslogado";
-import CardComentarioProfessor from "../components/CardComentarioProfessor";
+import { Professor } from '../../../types/professor'
+import { apiService } from '../../../utils/api'
+import AvaliacaoCardProfessor from '@/app/components/AvaliacaoCardProfessor'
+import HeaderDeslogado from '@/app/components/HeaderDeslogado'
 
-export default function Home() {
+interface Props {
+  params: { id: string }
+}
+
+export default async function Home({ params }: Props) {
+  const id = parseInt(params.id)
+  const professor: Professor = await apiService.getProfessor(id)
+  
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
@@ -27,7 +36,7 @@ export default function Home() {
             <div className="flex flex-rol items-start justify-between p-10 border-b-3 border-gray-800">
 
                 <div className="flex flex-col items-start justify-start gap-2 pt-15">
-                    <h1 className="text-3xl font-bold text-blue-900">Sandro Curió</h1>
+                    <h1 className="text-3xl font-bold text-blue-900">{professor.nome}</h1>
 
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-email.png" 
@@ -38,7 +47,7 @@ export default function Home() {
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-dept.webp" 
                         alt="Dept:" className="w-7 h-6"></img>
-                        <p className="text-lg text-gray-800">CIC / dept. Ciência da computação</p>
+                        <p className="text-lg text-gray-800">{professor.departamento}</p>
                     </div>
                 </div>
 
@@ -50,15 +59,12 @@ export default function Home() {
                   Avaliações
                 </h2>
 
-                {/* Avaliações */}
+                {/* Cards de publicação */}
 
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
-                
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
-                <CardComentarioProfessor/>
+                {professor.avaliacoes.map((r, i) => (
+                  <AvaliacaoCardProfessor key={i} avaliacao={r} />
+                ))}
 
                 </div>
 

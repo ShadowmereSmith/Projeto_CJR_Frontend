@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import * as FaIcons from 'react-icons/fa'
 
-import ModalAvaliacao from '../components/modalAvaliacao';
+import ModalAvaliacao from './modalAvaliacao';
 import ModalComentario from 'app/components/modalComentario';
 import ModalEdicao from 'app/components/modalEdicao';
 import { useState } from 'react';

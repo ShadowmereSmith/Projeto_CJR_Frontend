@@ -6,7 +6,7 @@ const FaRegCommentDots = FaIcons.FaRegCommentDots as unknown as React.FC<any>
 const FaEdit = FaIcons.FaEdit as unknown as React.FC<any>
 const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
-import AvaliacaoComentario from '../AvaliacaoComentario'
+import AvaliacaoComentario from './AvaliacaoComentario'
 import { Avaliacao } from '../../types/avaliacao'
 
 
