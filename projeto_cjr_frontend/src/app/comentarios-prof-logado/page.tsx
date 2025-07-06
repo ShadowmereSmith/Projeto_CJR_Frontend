@@ -1,14 +1,14 @@
 import * as FaIcons from 'react-icons/fa'
 import CardComentarioProfessor from '../components/CardComentarioProfessor';
 
-import Header from '../components/Header'
+import HeaderLogado from '../components/HeaderLogado'
 
 export default function Home() {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
         
-        <Header/>
+        <HeaderLogado/>
 
         <div className="flex flex-row">
 
@@ -20,8 +20,7 @@ export default function Home() {
 
         <div className="flex flex-col min-h-screen w-2xl bg-white border-r-3 border-l-3 border-gray-800">
             <div className="bg-blue-500 h-45 w-full">
-
-                <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg" alt="Perfil do Professor"
+                <img src="/sandro-curio.jpg" alt="Perfil do Professor"
                   className="w-40 h-40 rounded-full ml-10 mt-25">
                 </img>
             </div>
@@ -32,14 +31,14 @@ export default function Home() {
                     <h1 className="text-3xl font-bold text-blue-900">Sandro Curió</h1>
 
                     <div className="flex flex-row items-center justify-start gap-2">
-                        <img src="https://png.pngtree.com/png-clipart/20250208/original/pngtree-letter-icon-with-filled-outline-style-vector-png-image_9803563.png" 
+                        <img src="/icone-email.png" 
                         alt="Email:" className="w-7 h-6"></img>
                         <p className="text-lg text-gray-800">professor@unb.org.br</p>
                     </div>
 
                     <div className="flex flex-row items-center justify-start gap-2">
-                        <img src="https://images.vexels.com/media/users/3/145057/isolated/preview/40162fe877a9228c5cd5f28939af5a0e-silhueta-de-predio-de-escritorios.png" 
-                        alt="Email:" className="w-7 h-6"></img>
+                        <img src="/icone-dept.webp" 
+                        alt="Dept:" className="w-7 h-6"></img>
                         <p className="text-lg text-gray-800">CIC / dept. Ciência da computação</p>
                     </div>
                 </div>

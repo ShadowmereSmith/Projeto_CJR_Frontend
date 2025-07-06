@@ -1,20 +1,12 @@
+import HeaderDeslogado from "../components/HeaderDeslogado";
 import CardProfessor from "../components/cardProfessor";
 
 export default function Home() {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
-        {/* Header */}
-        <div className="w-screen h-18 flex flex-row items-top justify-between p-4 bg-blue-900">
-
-          <img src="unb-logo.png" alt="UNB"
-            className="size-10 w-24 pl-5"></img>
-
-          <button className="cursor-pointer bg-blue-600 text-white p-3 pt-1.5 rounded-lg
-               w-35 h-12 border-3 border-white hover:bg-blue-500 hover:scale-105 transition-all duration-300 text-2xl">
-            Login</button>
-
-        </div>
+        
+        <HeaderDeslogado/>
 
         <div>
 
@@ -42,7 +34,7 @@ export default function Home() {
             <button className="cursor-pointer hover:scale-105 transition-all duration-300">
               <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
 
-                <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
+                <img src="/sandro-curio.jpg"
                   alt="Professor"
                   className="h-35 w-35 mb-3 mt-1 rounded-full" />
                 <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
@@ -74,7 +66,7 @@ export default function Home() {
             <button className="cursor-pointer hover:scale-105 transition-all duration-300">
               <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
 
-                <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
+                <img src="/sandro-curio.jpg"
                   alt="Professor"
                   className="h-35 w-35 mb-3 mt-1 rounded-full" />
                 <h2 className="text-2xl font-bold">Sandro Curió</h2>

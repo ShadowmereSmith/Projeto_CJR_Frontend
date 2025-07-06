@@ -6,7 +6,7 @@ const FaBell = FaIcons.FaBell as unknown as React.FC<any>
 const FaSignOutAlt = FaIcons.FaSignOutAlt as unknown as React.FC<any>
 
 
-export default function Header() {
+export default function HeaderLogado() {
   return (
     <header className="w-full h-18 bg-blue-900 flex items-center justify-between px-6 py-3">
       {/* Lado esquerdo - Logo UnB */}

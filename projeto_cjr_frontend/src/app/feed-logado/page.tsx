@@ -2,7 +2,7 @@
 
 import * as FaIcons from 'react-icons/fa'
 
-import Header from '../components/Header'
+import HeaderLogado from '../components/HeaderLogado'
 import CardProfessor from '../components/cardProfessor';
 
 import ModalAvaliacao from '../components/modalAvaliacao';
@@ -31,7 +31,7 @@ export default function Page({ params }: { params: { id: string } }) {
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
         {/* Header */}
-        <Header/>
+        <HeaderLogado/>
 
         <div>
 
@@ -59,7 +59,7 @@ export default function Page({ params }: { params: { id: string } }) {
             <button className=" cursor-pointer hover:scale-105 transition-all duration-300">
               <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
 
-                <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
+                <img src="/sandro-curio.jpg"
                   alt="Professor"
                   className="h-35 w-35 mb-3 mt-1 rounded-full" />
                 <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
@@ -99,7 +99,7 @@ export default function Page({ params }: { params: { id: string } }) {
             <button className="cursor-pointer hover:scale-105 transition-all duration-300">
               <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
 
-                <img src="https://so-cursosonline.com/wp-content/uploads/2023/04/sandro-curio-1.jpg"
+                <img src="/sandro-curio.jpg"
                   alt="Professor"
                   className="h-35 w-35 mb-3 mt-1 rounded-full" />
                 <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>

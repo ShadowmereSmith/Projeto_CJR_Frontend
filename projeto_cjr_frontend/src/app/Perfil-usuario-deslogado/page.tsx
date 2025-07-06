@@ -1,19 +1,11 @@
+import HeaderDeslogado from '../components/HeaderDeslogado';
 import CardComentarioUsuario from '../components/CardComentarioUsuario'
 export default function Home() {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
         {/* Header */}
-        <div className="w-screen h-18 flex flex-row items-top justify-between p-4 bg-blue-900">
-
-          <img src="unb-logo.png" alt="UNB"
-            className="size-10 w-24 pl-5"></img>
-
-            <button className="cursor-pointer bg-blue-600 text-white p-3 pt-1.5 rounded-lg
-               w-35 h-12 border-3 border-white hover:bg-blue-500 hover:scale-105 transition-all duration-300 text-2xl">
-            Login</button>
-
-        </div>
+        <HeaderDeslogado/>
 
         <div className="flex flex-row">
 

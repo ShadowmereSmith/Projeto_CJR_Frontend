@@ -1,10 +1,10 @@
-import Header from '../components/Header'
+import HeaderLogado from '../components/HeaderLogado'
 export default function Home() {
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
         
-        <Header/>
+        <HeaderLogado/>
 
         <div className="flex flex-row">
 
@@ -17,7 +17,7 @@ export default function Home() {
         <div className="flex flex-col min-h-screen w-2xl items-center bg-white border-r-3 border-l-3 border-gray-800">
             <div className="flex flex-col bg-blue-500 h-45 w-full items-center">
 
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Perfil do usuário"
+                <img src="/Perfil_default.png" alt="Perfil do usuário"
                   className="w-50 h-50 mt-25">
                 </img>
             </div>

@@ -6,8 +6,13 @@ export default function CardComentarioProfessor() {
 
                     <div className="flex flex-roll items-center">
 
-                      <img src="/Perfil_default.png" alt="Publicação"
-                      className="w-20 h-20 rounded-2xl ml-5"></img>
+                      <Image
+                        src="/Perfil_default.png"
+                        alt="Avatar"
+                        width={60}
+                        height={40}
+                        className="rounded-full"
+                      />
 
                       <h3 className="text-2xl font-bold text-white ml-5">
                         Usuário
