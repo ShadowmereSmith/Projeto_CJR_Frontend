@@ -8,6 +8,9 @@ import { UpdateProfessorDto } from '../types/professor';
 import { Disciplina } from '../types/disciplina';
 import { CreateDisciplinaDto } from '../types/disciplina';
 import { UpdateDisciplinaDto } from '../types/disciplina';
+import { ProfessorDisciplina } from '../types/professorDisciplina';
+import { CreateProfessorDisciplinaDto } from '../types/professorDisciplina';
+import { UpdateProfessorDisciplinaDto } from '../types/professorDisciplina';
 import { Comentario } from '../types/comentario';
 import { CreateComentarioDto } from '../types/comentario';
 import { UpdateComentarioDto } from '../types/comentario';
@@ -108,6 +111,44 @@ const deleteDisciplina = async (id: number): Promise<Disciplina> => {
   return response.data;
 };
 
+//
+// PROFESSORDISCIPLINA
+//
+
+const createProfessorDisciplina = async (dados: CreateProfessorDisciplinaDto): Promise<ProfessorDisciplina> => {
+  const response = await api.post('/professores-disciplinas', dados);
+  return response.data;
+};
+
+const getProfessoresDisciplinas = async (): Promise<ProfessorDisciplina[]> => {
+  const response = await api.get('/professores-disciplinas');
+  return response.data;
+};
+
+const getProfessorDisciplina = async (
+  professorID: number,
+  disciplinaID: number
+): Promise<ProfessorDisciplina> => {
+  const response = await api.get(`/professores-disciplinas/${professorID}/${disciplinaID}`);
+  return response.data;
+};
+
+const updateProfessorDisciplina = async (
+  dados: UpdateProfessorDisciplinaDto,
+  professorID: number,
+  disciplinaID: number
+): Promise<ProfessorDisciplina> => {
+  const response = await api.put(`/professores-disciplinas/${professorID}/${disciplinaID}`, dados);
+  return response.data;
+};
+
+const deleteProfessorDisciplina = async (
+  professorID: number,
+  disciplinaID: number
+): Promise<ProfessorDisciplina> => {
+  const response = await api.delete(`/professores-disciplinas/${professorID}/${disciplinaID}`);
+  return response.data;
+};
 
 //
 // COMENTÁRIO
@@ -206,6 +247,11 @@ export const apiService = {
   getDisciplina,
   updateDisciplina,
   deleteDisciplina,
+  createProfessorDisciplina,
+  getProfessoresDisciplinas,
+  getProfessorDisciplina,
+  updateProfessorDisciplina,
+  deleteProfessorDisciplina,
   createComentario,
   getComentarios,
   getComentario,
