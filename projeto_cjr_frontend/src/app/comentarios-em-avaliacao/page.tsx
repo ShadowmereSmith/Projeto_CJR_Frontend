@@ -3,21 +3,28 @@
 import * as FaIcons from 'react-icons/fa'
 const FaArrowLeft = FaIcons.FaArrowLeft as unknown as React.FC<any>
 
-import Header from '../Header'
-import AvaliacaoCard from '../AvaliacaoCard'
+
+import HeaderLogado from '../components/HeaderLogado'
+import AvaliacaoCard from '../components/AvaliacaoCard'
+import { apiService } from '@/utils/api'
 import { Avaliacao } from '../../types/avaliacao'
 
+
 interface Props {
-  avaliacao: Avaliacao
+  params :{id: string}
 }
 
-export default function ComentariosEmAvaliacaoPage({ avaliacao } : Props) {
+export default async function ComentariosEmAvaliacaoPage({ params } : Props) {
+
+  const id = parseInt(params.id)
+  const avaliacao: Avaliacao = await apiService.getAvaliacao(id)
+
   return (
     <>
-      <Header />
-      <main className="min-h-screen bg-white">
+      <HeaderLogado/>
+      <main className="min-h-screen bg-emerald-50">
         <div className="flex items-center gap-2 px-6 py-6">
-          <FaArrowLeft className="text-blue-900 cursor-pointer" size={20} />
+          <FaArrowLeft className="text-black cursor-pointer" size={20} />
           <h1 className="text-2xl font-bold text-blue-900">Comentários da Avaliação</h1>
         </div>
         <div className="px-6">

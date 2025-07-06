@@ -6,8 +6,9 @@ const FaRegCommentDots = FaIcons.FaRegCommentDots as unknown as React.FC<any>
 const FaEdit = FaIcons.FaEdit as unknown as React.FC<any>
 const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
-import AvaliacaoComentario from './AvaliacaoComentario'
-import { Avaliacao } from '../types/avaliacao'
+import AvaliacaoComentario from '../AvaliacaoComentario'
+import { Avaliacao } from '../../types/avaliacao'
+
 
 type Props = {
   avaliacao: Avaliacao
@@ -15,11 +16,11 @@ type Props = {
 
 export default function AvaliacaoCard({ avaliacao }: Props) {
   return (
-    <div className="bg-[#002147] text-white rounded-xl p-4 mb-6 shadow-md">
+    <div className="bg-blue-900 text-white rounded-xl p-4 mb-6 shadow-md">
       <div className="flex justify-between items-start">
         <div className="flex items-start gap-3">
           <Image
-            src="/default-avatar.png"
+            src="/Perfil_default.png"
             alt="Avatar"
             width={60}
             height={40}
