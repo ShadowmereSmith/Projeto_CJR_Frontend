@@ -1,7 +1,11 @@
 import HeaderDeslogado from "../components/HeaderDeslogado";
-import CardProfessor from "../components/cardProfessor";
+import CardProfessor from "../components/cardProfessorDeslogado";
+import { Professor } from "@/types/professor"
+import { apiService } from '@/utils/api';
 
-export default function Home() {
+export default async function Home() {
+
+  const professores: Professor[] = await apiService.getProfessores()
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
@@ -43,10 +47,9 @@ export default function Home() {
               </div>
             </button>
             
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
+            {professores.map((r, i) => (
+              <CardProfessor key={i} professor={r} />
+            ))}
 
           </div>
 
@@ -75,16 +78,9 @@ export default function Home() {
               </div>
             </button>
 
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
+            {professores.map((r, i) => (
+              <CardProfessor key={i} professor={r} />
+            ))}
 
           </div>
 

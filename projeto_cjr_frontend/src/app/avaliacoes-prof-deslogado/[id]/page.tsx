@@ -1,9 +1,11 @@
+'use client'
+export const dynamic = 'force-dynamic';
 import { Professor } from '../../../types/professor'
 import { apiService } from '../../../utils/api'
-import AvaliacaoCardProfessor from '../../components/AvaliacaoCardProfessor'
-import HeaderLogado from '@/app/components/HeaderLogado'
+import AvaliacaoCardProfessor from '@/app/components/AvaliacaoCardProfessor'
+import HeaderDeslogado from '@/app/components/HeaderDeslogado'
 
-interface Props {
+type Props = {
   params: { id: string }
 }
 
@@ -15,7 +17,7 @@ export default async function Home({ params }: Props) {
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
         
-        <HeaderLogado/>
+        <HeaderDeslogado/>
 
         <div className="flex flex-row">
 
@@ -28,7 +30,7 @@ export default async function Home({ params }: Props) {
         <div className="flex flex-col min-h-screen w-2xl bg-white border-r-3 border-l-3 border-gray-800">
             <div className="bg-blue-500 h-45 w-full">
 
-                <img src="/sandro-curio.jpg" alt="Perfil do Professor"
+                <img src="/sandro-curio.jpg" alt="Perfil do professor"
                   className="w-40 h-40 rounded-full ml-10 mt-25">
                 </img>
             </div>
@@ -59,12 +61,12 @@ export default async function Home({ params }: Props) {
                   Avaliações
                 </h2>
 
-                {/* Card de publicação */}
-                
+                {/* Cards de publicação */}
+
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
-                  {professor.avaliacoes.map((r, i) => (
-                    <AvaliacaoCardProfessor key={i} avaliacao={r} />
-                  ))}
+                {professor.avaliacoes.map((r, i) => (
+                  <AvaliacaoCardProfessor key={i} avaliacao={r} />
+                ))}
 
                 </div>
 

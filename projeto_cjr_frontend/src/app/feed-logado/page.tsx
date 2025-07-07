@@ -3,7 +3,7 @@
 import * as FaIcons from 'react-icons/fa'
 
 import HeaderLogado from '../components/HeaderLogado'
-import CardProfessor from '../components/cardProfessor';
+import CardProfessor from '../components/cardProfessorLogado';
 
 import ModalAvaliacao from '../components/modalAvaliacao';
 import ModalComentario from 'app/components/modalComentario';
@@ -12,9 +12,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { apiService } from '@/utils/api';
 import { jwtDecode } from 'jwt-decode';
+import { Professor } from "@/types/professor"
 
 
-export default function Page() {
+export default async function Page() {
 
   const router = useRouter();
 
@@ -40,6 +41,8 @@ export default function Page() {
       router.push('/login');
     }
   };
+
+  const professores: Professor[] = await apiService.getProfessores()
 
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
@@ -82,10 +85,9 @@ export default function Page() {
               </div>
             </button>
 
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
+            {professores.map((r, i) => (
+              <CardProfessor key={i} professor={r} />
+            ))}
 
           </div>
 
@@ -122,16 +124,9 @@ export default function Page() {
               </div>
             </button>
 
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
-            <CardProfessor/>
+            {professores.map((r, i) => (
+              <CardProfessor key={i} professor={r} />
+            ))}
 
           </div>
 
