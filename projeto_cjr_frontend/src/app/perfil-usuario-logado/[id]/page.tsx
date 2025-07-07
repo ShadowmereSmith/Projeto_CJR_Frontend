@@ -1,11 +1,61 @@
-import HeaderLogado from '../components/HeaderLogado'
-import CardComentarioUsuario from '../components/CardComentarioUsuario'
+'use client';
+
+import HeaderLogado from '../../components/HeaderLogado'
+//import CardComentarioUsuario from '../../components/CardComentarioUsuario'
 import Image from 'next/image'
 import * as FaIcons from 'react-icons/fa'
+import { jwtDecode } from 'jwt-decode';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { apiService } from '@/utils/api';
 const FaBell = FaIcons.FaBell as unknown as React.FC<any>
 const FaSignOutAlt = FaIcons.FaSignOutAlt as unknown as React.FC<any>
 
 export default function Home() {
+
+  const [usuario, setUsuario] = useState<any>(null);
+
+  const router = useRouter();
+
+  const handleTrocarSenha = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const decoded = jwtDecode(token);
+      router.push(`/trocar-senha/${decoded.sub}`);
+    } else {
+      console.error('Token não encontrado');
+      router.push('/login');
+    }
+  }
+
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    const decoded: any = jwtDecode(token);
+    return decoded.sub;
+  };
+
+  useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const userId = getUserIdFromToken();
+      if (!userId) {
+        console.error('Usuário não autenticado');
+        return;
+      }
+
+      const response = await apiService.getUser(userId);
+      setUsuario(response);
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+    }
+  };
+
+  fetchUser();
+}, []);
+
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
@@ -31,18 +81,18 @@ export default function Home() {
             <div className="flex flex-rol items-start justify-between p-10 border-b-3 border-gray-800">
 
                 <div className="flex flex-col items-start justify-start gap-2 pt-15">
-                    <h1 className="text-3xl font-bold text-blue-900">Usuário</h1>
+                    <h1 className="text-3xl font-bold text-blue-900">{usuario?.nome}</h1>
 
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-email.png" 
                         alt="Email:" className="w-7 h-6"></img>
-                        <p className="text-lg text-gray-800">usuario@unb.org.br</p>
+                        <p className="text-lg text-gray-800">{usuario?.email}</p>
                     </div>
 
                     <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-dept.webp" 
                         alt="Dept:" className="w-7 h-6"></img>
-                        <p className="text-lg text-gray-800">CIC / dept. Ciência da computação</p>
+                        <p className="text-lg text-gray-800">{usuario?.curso} / {usuario?.departamento}</p>
                     </div>
                 </div>
 
@@ -51,7 +101,10 @@ export default function Home() {
                         Editar Perfil
                     </button>
                     
-                    <button className="bg-blue-600 text-white text-sm h-8 w-30 pt-1 rounded-lg border-3 border-blue-950  hover:bg-blue-700 hover:scale-105 transition-all duration-300">
+                    <button 
+                      className="bg-blue-600 text-white text-sm h-8 w-30 pt-1 rounded-lg border-3 border-blue-950  hover:bg-blue-700 hover:scale-105 transition-all duration-300"
+                      onClick={handleTrocarSenha}
+                    >
                         Trocar senha
                     </button>
 
@@ -72,11 +125,11 @@ export default function Home() {
 
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
                 
+                {/*<CardComentarioUsuario/>
                 <CardComentarioUsuario/>
                 <CardComentarioUsuario/>
                 <CardComentarioUsuario/>
-                <CardComentarioUsuario/>
-                <CardComentarioUsuario/>
+                <CardComentarioUsuario/>*/}
 
                 </div>
 

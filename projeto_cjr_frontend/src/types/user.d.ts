@@ -16,7 +16,11 @@ export interface User {
 export type CreateUsuarioDto = Omit<Usuario, 'id' | 'createdAt' | 'updatedAt' | 'avaliacoes' | 'comentarios'>;
 
 // Tipo para atualização (todos campos opcionais exceto id)
-export type UpdateUsuarioDto = Partial<Omit<Usuario, 'id'>> & { id: number };
+export type UpdateUsuarioDto = Partial<Omit<Usuario, 'id'>> & { 
+    id: number 
+    senhaAtual?: string;
+    novaSenha?: string;
+};
 
 // Tipo seguro para retorno (excluindo a senha)
 export type SafeUsuario = Omit<Usuario, 'senha'>;
