@@ -30,6 +30,27 @@ export default function Home() {
     }
   }
 
+  
+
+  const handleDelete = () => {
+    const confirmed = window.confirm('Tem certeza que deseja deletar seu perfil?\n(Esta ação não pode ser desfeita)');
+    if (confirmed) {
+      const userId = getUserIdFromToken();
+      if (!userId) {
+        console.error('Usuário não autenticado');
+        return;
+      }
+      try {
+        apiService.deleteUser(userId);
+        localStorage.removeItem('token');
+        router.push('/login');
+      } catch (error) {
+        console.error('Erro ao excluir o usuário:', error);
+        alert('Erro ao excluir o usuário. Tente novamente.');
+      }
+    }
+  }
+
   const getUserIdFromToken = () => {
     const token = localStorage.getItem('token');
     if (!token) return null;
@@ -40,7 +61,7 @@ export default function Home() {
   useEffect(() => {
   const fetchUser = async () => {
     try {
-      const userId = getUserIdFromToken();
+      const userId = await getUserIdFromToken();
       if (!userId) {
         console.error('Usuário não autenticado');
         return;
@@ -108,7 +129,9 @@ export default function Home() {
                         Trocar senha
                     </button>
 
-                    <button className="bg-red-500 text-white text-sm h-8 w-30 pt-1 rounded-lg border-3 border-black  hover:bg-red-600 hover:scale-105 transition-all duration-300">
+                    <button 
+                      onClick={handleDelete}
+                      className="bg-red-500 text-white text-sm h-8 w-30 pt-1 rounded-lg border-3 border-black  hover:bg-red-600 hover:scale-105 transition-all duration-300">
                         Excluir Perfil
                     </button>
                 </div>

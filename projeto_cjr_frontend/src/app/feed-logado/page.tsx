@@ -8,16 +8,30 @@ import CardProfessor from '../components/cardProfessorLogado';
 import ModalAvaliacao from '../components/modalAvaliacao';
 import ModalComentario from 'app/components/modalComentario';
 import ModalEdicao from 'app/components/modalEdicao';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { apiService } from '@/utils/api';
 import { jwtDecode } from 'jwt-decode';
 import { Professor } from "@/types/professor"
 
 
-export default async function Page() {
+export default function Page() {
 
   const router = useRouter();
+
+  const [professores, setProfessores] = useState<Professor[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await apiService.getProfessores();
+        setProfessores(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, );
 
   const handleLogout = () => {
     const confirmed = window.confirm('Tem certeza que deseja sair?');
@@ -41,8 +55,6 @@ export default async function Page() {
       router.push('/login');
     }
   };
-
-  const professores: Professor[] = await apiService.getProfessores()
 
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
