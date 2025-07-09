@@ -21,10 +21,10 @@ export default function AvaliacaoCardProfessor({ avaliacao }: Props) {
           className="w-20 h-20 rounded-2xl ml-5"></img>
 
           <h3 className="text-2xl font-bold text-white ml-5">
-            {avaliacao.usuario.nome}
+            {avaliacao.usuario?.nome}
           </h3>
 
-          <p className="ml-3 text-sm"> • {avaliacao.updatedAt} • {avaliacao.professor.nome} • {avaliacao.disciplina.nome}</p>
+          <p className="ml-3 text-sm"> • {avaliacao.updatedAt} • {avaliacao.professor?.nome} • {avaliacao.disciplina?.nome}</p>
 
         </div>
 
@@ -44,7 +44,7 @@ export default function AvaliacaoCardProfessor({ avaliacao }: Props) {
             <img src="/icone-comentario.png" alt="Comentários"
               className="w-6 h-6 cursor-pointer hover:scale-105 transition-all duration-300"></img>
             </button>
-            <span className="text-white">{avaliacao.comentarios.length} comentários</span>
+            <span className="text-white">{avaliacao.comentarios?.length} comentários</span>
             
 
             </div>
