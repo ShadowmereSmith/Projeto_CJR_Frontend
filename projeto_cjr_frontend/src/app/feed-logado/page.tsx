@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { apiService } from '@/utils/api';
 import { jwtDecode } from 'jwt-decode';
 import { Professor } from "@/types/professor"
+import { Disciplina } from "@/types/disciplina"
 
 
 export default function Page() {
@@ -20,6 +21,8 @@ export default function Page() {
   const router = useRouter();
 
   const [professores, setProfessores] = useState<Professor[]>([]);
+  const [isOpenAvaliacao, setIsOpenAvaliacao] = useState(false);
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -32,29 +35,6 @@ export default function Page() {
     }
     fetchData();
   }, );
-
-  const handleLogout = () => {
-    const confirmed = window.confirm('Tem certeza que deseja sair?');
-    if (confirmed) {
-      localStorage.removeItem('token');
-      router.push('/login');
-    }
-  }
-
-  const handlePerfil = () => {
-    const token = localStorage.getItem('token');
-    let userId = null;
-
-    if (token) {
-      const decoded = jwtDecode(token);
-      userId = decoded.sub;
-      router.push(`/perfil-usuario-logado/${userId}`);
-    }
-    else {
-      console.error('Token não encontrado');
-      router.push('/login');
-    }
-  };
 
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
@@ -110,10 +90,13 @@ export default function Page() {
           <div className="flex flex-row items-center justify-around pt-10">
             <h1 className="font-bold text-4xl text-black">Todos os Professores</h1>
             <div className="flex flex-row items-center justify-center gap-5 pr-5">
-                <button className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-50 h-12 border-3
-                 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl">
-                    Nova Publicação
+                <button 
+                  onClick={() => setIsOpenAvaliacao(true)}
+                  className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-50 h-12 border-3 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl"
+                >
+                  Nova Publicação
                 </button>
+                <ModalAvaliacao professores={professores} isOpen={isOpenAvaliacao} onClose={() => setIsOpenAvaliacao(false)}/>
 
                 <button className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3
                  border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl">

@@ -1,17 +1,29 @@
 import React from 'react';
 import { useState} from 'react';
 import { Bold, Italic, Heading, Link, Image, HelpCircle } from "lucide-react";
+import { Professor } from '@/types/professor';
+import { Disciplina } from '@/types/disciplina';
 
 type ModalProps = {
+  professores: Professor[]; // Lista de professores para serem avaliados
   isOpen: boolean; // Controla se o modal está aberto ou fechado
   onClose: () => void; // Função para fechar o modal (deve receber setIsOpen(false) como parâmetro, ele executa essa função quando o botão de fechar é clicado)
 }
 
-export default function ModalAvaliacao({isOpen, onClose}: ModalProps) { // modal recebe props para controlar seu estado
+export default function ModalAvaliacao({professores, isOpen, onClose}: ModalProps) { // modal recebe props para controlar seu estado
   if (!isOpen) return null; // Se o modal não estiver aberto, não renderiza nada
 
-  const [professor, setProfessor] = useState("");
+  const [professor, setProfessor] = useState<Professor | null>(null);
+  const [professorId, setProfessorId] = useState<string>('');
   const [disciplina, setDisciplina] = useState("");
+
+  const handleProfessorChange = (id: string) => {
+    setProfessorId(id);
+    setDisciplina(''); // limpa a disciplina ao trocar de professor
+    const found = professores.find(p => p.id === parseInt(id));
+    console.log('Professor selecionado:', found);
+    setProfessor(found || null);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -20,12 +32,16 @@ export default function ModalAvaliacao({isOpen, onClose}: ModalProps) { // modal
         <select 
           className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 h-8 mb-2 px-2 focus:outline-none invalid:text-gray-400"
           required
-          value={professor}
-          onChange={e => setProfessor(e.target.value)}
+          value={professorId}
+          onChange={e => handleProfessorChange(e.target.value)}
         >  
           <option value="" disabled>Nome do Professor</option>
-          <option value="id-13" className="text-black">Mauro Patrão</option> {/* Exemplo de professor, pode ser substituído por uma lista dinâmica */}
-          <option value="id-14" className="text-black">Exemplo</option>
+          {professores.map(p => (
+            <option key={p.id} value={p.id} className="text-black">
+              {p.nome}
+            </option>
+        ))}
+
         </select>
         <select 
           className="rounded-lg font-normal bg-white hover:bg-gray-100 focus:bg-gray-100 h-8 mb-2 px-2 focus:outline-none invalid:text-gray-400"
@@ -34,9 +50,11 @@ export default function ModalAvaliacao({isOpen, onClose}: ModalProps) { // modal
           onChange={e => setDisciplina(e.target.value)}
         >
           <option value="" disabled>Disciplina</option>
-          <option value="id-13" className="text-black">Cálculo 2</option> {/* Exemplo de disciplina, pode ser substituído por uma lista dinâmica */}
-          <option value="id-14" className="text-black">Poledance</option>
-          <option value="id-14" className="text-black">FORRÓ</option>
+          {professor?.disciplinas?.map(pd => (
+            <option key={pd.disciplina.id} value={pd.disciplina.id}>
+              {pd.disciplina.nome}
+            </option>
+          ))}
         </select>
         <div className="rounded-xl flex flex-col flex-grow items-center justify-center bg-blue-300 mb-4">
           <div className="w-full flex flex-row justify-start items-center px-2">
