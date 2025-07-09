@@ -47,11 +47,16 @@ export default function AvaliacaoCard({ avaliacao }: Props) {
         <span className="italic">{avaliacao.comentarios.length} comentário(s)</span>
       </div>
 
+      {avaliacao.comentarios && avaliacao.comentarios.length > 0 ? (
       <div className="mt-4 space-y-2 pl-4 border-l-2 border-blue-200">
-        {avaliacao.comentarios.map((r, i) => (
-          <AvaliacaoComentario key={i} usuario={r.usuario.nome} conteudo={r.conteudo} />
+        {avaliacao.comentarios.map((coment, id) => (
+          <AvaliacaoComentario key={id} comentario = {coment} />
         ))}
       </div>
+      ) : (
+        <p className='mt-4 text-gray-800'>Nenhum comentário encontrado</p>
+      )
+      }
     </div>
   )
 }
