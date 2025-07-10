@@ -24,7 +24,6 @@ export default function CardProfessor({ professor }: Props) {
                   className="rounded-full"
                 />
                 <h2 className="text-2xl font-bold text-white">{professor.nome}</h2>
-                <p className="text-2sm text-white">Disciplina: Cáuculo 1</p>
 
             </div>
         </button>

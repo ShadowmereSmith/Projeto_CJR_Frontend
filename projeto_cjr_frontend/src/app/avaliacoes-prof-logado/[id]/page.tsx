@@ -21,14 +21,14 @@ export default async function Home({ params }: Props) {
 
         <div className="mt-5 mr-5 h-20 w-20 cursor-pointer">
                   <button className=" cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300">
-                    <img src = "/default-avatar.png" alt = "Voltar"></img>
+                    <img src = "/seta-voltar.png" alt = "Voltar"></img>
                   </button>
         </div>
 
         <div className="flex flex-col min-h-screen w-2xl bg-white border-r-3 border-l-3 border-gray-800">
             <div className="bg-blue-500 h-45 w-full">
 
-                <img src="/sandro-curio.jpg" alt="Perfil do Professor"
+                <img src="/Perfil_default.png" alt="Perfil do Professor"
                   className="w-40 h-40 rounded-full ml-10 mt-25">
                 </img>
             </div>

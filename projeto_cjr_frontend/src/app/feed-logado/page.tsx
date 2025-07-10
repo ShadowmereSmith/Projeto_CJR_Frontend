@@ -21,7 +21,14 @@ export default function Page() {
   const router = useRouter();
 
   const [professores, setProfessores] = useState<Professor[]>([]);
+  const [professoresOriginais, setProfessoresOriginais] = useState<Professor[]>([]); // salva o array original dos professores vindo do back
+  const [ordenarPorNome, setOrdenarPorNome] = useState(false); // booleano que diz se está ordenando por nome ou não
   const [isOpenAvaliacao, setIsOpenAvaliacao] = useState(false);
+
+  const professoresExibidos = ordenarPorNome // muda a exibição dos professores dependendo do booleano
+  ? [...professoresOriginais].sort((a, b) => a.nome.localeCompare(b.nome))
+  : professoresOriginais;
+
   
 
   useEffect(() => {
@@ -29,6 +36,7 @@ export default function Page() {
       try {
         const response = await apiService.getProfessores();
         setProfessores(response);
+        setProfessoresOriginais(response); // salva a ordem original dos professores em ordem de adição
       } catch (error) {
         console.error(error);
       }
@@ -38,7 +46,7 @@ export default function Page() {
 
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
-      <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
+      <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto pb-10">
 
         <HeaderLogado/>
 
@@ -65,19 +73,7 @@ export default function Page() {
 
           <div className="flex flex-row justify-center-safe pt-20 gap-10">
 
-            <button className=" cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="/sandro-curio.jpg"
-                  alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
-                <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
-                <p className="text-2sm text-white">Disciplina: Matemática</p>
-
-              </div>
-            </button>
-
-            {professores.map((r, i) => (
+            {professores.slice(-5).map((r, i) => (
               <CardProfessor key={i} professor={r} />
             ))}
 
@@ -98,8 +94,10 @@ export default function Page() {
                 </button>
                 <ModalAvaliacao professores={professores} isOpen={isOpenAvaliacao} onClose={() => setIsOpenAvaliacao(false)}/>
 
-                <button className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3
-                 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl">
+                <button 
+                  className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl"
+                  onClick={() => setOrdenarPorNome(!ordenarPorNome)} // inverte o booleano para ordenar ou não
+                >
                     Ordenar
                 </button>
             </div>
@@ -107,19 +105,7 @@ export default function Page() {
 
           <div className="grid grid-cols-5 pl-10 pr-10 pt-10  gap-10">
 
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="/sandro-curio.jpg"
-                  alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
-                <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
-                <p className="text-2sm text-white">Disciplina: Matemática</p>
-
-              </div>
-            </button>
-
-            {professores.map((r, i) => (
+            {professoresExibidos.map((r, i) => (
               <CardProfessor key={i} professor={r} />
             ))}
 
