@@ -5,9 +5,10 @@ import { Avaliacao } from "@/types/avaliacao"
 
 type Props = {
   avaliacao: Avaliacao
+  isEditavel: boolean
 }
 
-export default function AvaliacaoCardProfessor({ avaliacao }: Props) {
+export default function AvaliacaoCardProfessor({ avaliacao, isEditavel }: Props) {
   const router = useRouter()
   const irParaComentarios = () => {
     router.push(`/comentarios-em-avaliacao/${avaliacao.id}`)
@@ -51,15 +52,16 @@ export default function AvaliacaoCardProfessor({ avaliacao }: Props) {
 
             <div className="flex flex-row items-center gap-2">
 
-              <button>
+
+              {isEditavel && <button>
                 <img src="/icone-editar.png" alt="Editar"
                 className="w-6 h-6 cursor-pointer hover:scale-105 transition-all duration-300"></img>
-              </button>
+              </button>}
 
-              <button>
+              {isEditavel && <button>
                 <img src="/icone-excluir.png" alt="Excluir"
                 className="w-6 h-6 cursor-pointer hover:scale-105 transition-all duration-300"></img>
-              </button>
+              </button>}
 
             </div>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import HeaderLogado from '../../components/HeaderLogado'
-//import CardComentarioUsuario from '../../components/CardComentarioUsuario'
+import AvaliacaoCardProfessor from '../../components/AvaliacaoCardProfessor'
 import Image from 'next/image'
 import * as FaIcons from 'react-icons/fa'
 import { jwtDecode } from 'jwt-decode';
@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { apiService } from '@/utils/api';
+import { Avaliacao } from '@/types/avaliacao';
 const FaBell = FaIcons.FaBell as unknown as React.FC<any>
 const FaSignOutAlt = FaIcons.FaSignOutAlt as unknown as React.FC<any>
 
@@ -148,11 +149,9 @@ export default function Home() {
 
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
                 
-                {/*<CardComentarioUsuario/>
-                <CardComentarioUsuario/>
-                <CardComentarioUsuario/>
-                <CardComentarioUsuario/>
-                <CardComentarioUsuario/>*/}
+                  {usuario?.avaliacoes?.map((r: Avaliacao, i: number) => (
+                    <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={true} />
+                  ))}
 
                 </div>
 
