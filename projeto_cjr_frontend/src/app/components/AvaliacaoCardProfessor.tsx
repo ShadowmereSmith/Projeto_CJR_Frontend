@@ -8,7 +8,7 @@ import ModalEdicao from "./modalEdicao"
 type Props = {
   avaliacao: Avaliacao
   isEditavel: boolean
-  onDeleted: () => void // Callback para atualizar a lista de avaliações após exclusão
+  onDeleted?: () => void // Callback para atualizar a lista de avaliações após exclusão
 }
 
 export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDeleted}: Props) {
@@ -36,7 +36,7 @@ export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDelete
       try {
         await apiService.deleteAvaliacao(avaliacaoId);
         alert('Avaliação excluída com sucesso!');
-        onDeleted(); 
+        onDeleted?.(); 
       } catch (error) {
         console.error('Erro ao excluir a avaliação', error);
         alert('Erro ao excluir a avaliação. Tente novamente.');
