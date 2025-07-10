@@ -16,6 +16,7 @@ const FaSignOutAlt = FaIcons.FaSignOutAlt as unknown as React.FC<any>
 export default function Home() {
 
   const [usuario, setUsuario] = useState<any>(null);
+  const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
 
   const router = useRouter();
 
@@ -30,8 +31,6 @@ export default function Home() {
       router.push('/login');
     }
   }
-
-  
 
   const handleDelete = () => {
     const confirmed = window.confirm('Tem certeza que deseja deletar seu perfil?\n(Esta ação não pode ser desfeita)');
@@ -60,23 +59,31 @@ export default function Home() {
   };
 
   useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const userId = await getUserIdFromToken();
-      if (!userId) {
-        console.error('Usuário não autenticado');
-        return;
+    const fetchUser = async () => {
+      try {
+        const userId = await getUserIdFromToken();
+        if (!userId) {
+          console.error('Usuário não autenticado');
+          return;
+        }
+
+        const response = await apiService.getUser(userId);
+        setUsuario(response);
+        setAvaliacoes(response.avaliacoes || []);
+      } catch (error) {
+        console.error('Erro ao buscar usuário:', error);
       }
+    };
 
-      const response = await apiService.getUser(userId);
-      setUsuario(response);
-    } catch (error) {
-      console.error('Erro ao buscar usuário:', error);
-    }
+    fetchUser();
+  }, []);
+
+  // serve para atualizar a página quando o componente AvaliacaoCardProfessor sofrer delete
+  // ela é passada como prop para o componente AvaliacaoCardProfessor
+  // e é chamada quando o usuário clica no botão de deletar avaliação
+  const handleDeleteAvaliacao = (id: number) => {
+    setAvaliacoes(prev => prev.filter(av => av.id !== id));
   };
-
-  fetchUser();
-}, []);
 
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
@@ -149,15 +156,13 @@ export default function Home() {
 
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
                 
-                  {usuario?.avaliacoes?.map((r: Avaliacao, i: number) => (
-                    <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={true} />
+                  {avaliacoes.map((r: Avaliacao, i: number) => (
+                    <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={true} onDeleted={() => handleDeleteAvaliacao(r.id)}/>
                   ))}
 
                 </div>
 
             </div>
-
-        
 
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function Home() {
         >
             Abrir Modal Avaliacao
         </button>
-        <ModalAvaliacao isOpen={isOpen2} onClose={() => setIsOpen2(false)}/>
+        {/*<ModalAvaliacao isOpen={isOpen2} onClose={() => setIsOpen2(false)}/>*/}
 
         <button
             type="button"
