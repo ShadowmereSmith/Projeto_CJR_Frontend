@@ -8,6 +8,8 @@ const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
 import AvaliacaoComentario from './AvaliacaoComentario'
 import { Avaliacao } from '../../types/avaliacao'
+import ModalComentario from '../components/modalComentario';
+import { useState, useEffect } from 'react';
 
 
 type Props = {
@@ -15,6 +17,9 @@ type Props = {
 }
 
 export default function AvaliacaoCard({ avaliacao }: Props) {
+
+  const [isOpenComentario, setIsOpenComentario] = useState(false);
+
   return (
     <div className="bg-blue-900 text-white rounded-xl p-4 mb-6 shadow-md">
       <div className="flex justify-between items-start">
@@ -37,7 +42,10 @@ export default function AvaliacaoCard({ avaliacao }: Props) {
           </div>
         </div>
         <div className="flex gap-3 text-white text-sm mt-1">
-          <FaEdit className="cursor-pointer hover:scale-110 transition" />
+          <button onClick={() => setIsOpenComentario(true)}>
+            <FaEdit className="cursor-pointer hover:scale-110 transition" />
+          </button>
+          <ModalComentario isOpen={isOpenComentario} idAvaliacao={avaliacao.id} onClose={() => setIsOpenComentario(false)}/>
           <FaTrashAlt className="cursor-pointer hover:scale-110 transition" />
         </div>
       </div>

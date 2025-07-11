@@ -78,7 +78,7 @@ export default function Home({ params }: Props) {
 
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
                 {professor?.avaliacoes.map((r, i) => (
-                  <AvaliacaoCardProfessor key={i} avaliacao={r} />
+                  <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={false} />
                 ))}
 
                 </div>
