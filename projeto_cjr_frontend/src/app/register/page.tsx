@@ -17,6 +17,11 @@ export default function Register() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setErro('');
+
+        if (senha.length < 6) {
+            setErro('A senha deve ter pelo menos 6 caracteres.');
+            return;
+        }
         
         try{
             const response = await apiService.register(email, senha, nome, curso, departamento);

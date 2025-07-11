@@ -17,7 +17,6 @@ export type CreateUsuarioDto = Omit<Usuario, 'id' | 'createdAt' | 'updatedAt' | 
 
 // Tipo para atualização (todos campos opcionais exceto id)
 export type UpdateUsuarioDto = Partial<Omit<Usuario, 'id'>> & { 
-    id: number 
     senhaAtual?: string;
     novaSenha?: string;
 };

@@ -19,6 +19,11 @@ export default function Home() {
       return;
     }
 
+    if (novaSenha.length < 6) {
+      alert('A nova senha deve ter pelo menos 6 caracteres!');
+      return;
+    }
+
     try {
       const token = localStorage.getItem('token');
 
@@ -31,7 +36,6 @@ export default function Home() {
       const userId = decoded.sub;
       
       const response = await apiService.updateUser({
-        id: Number(userId),
         senhaAtual: senhaAtual,
         novaSenha: novaSenha,
       }, Number(userId));
