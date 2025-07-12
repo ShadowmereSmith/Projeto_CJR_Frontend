@@ -90,7 +90,7 @@ export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDelete
                 <img src="/icone-editar.png" alt="Editar"
                 className="w-6 h-6 cursor-pointer hover:scale-105 transition-all duration-300"></img>
               </button>}
-              <ModalEdicao isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+              <ModalEdicao isOpen={isModalOpen} avaliacao={avaliacao} onClose={() => setIsModalOpen(false)}/>
 
               {isEditavel && <button
                 onClick={handleDelete}

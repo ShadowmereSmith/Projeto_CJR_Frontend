@@ -21,4 +21,4 @@ export type CreateAvaliacaoDto = {
 };
 
 // Tipo para atualização (todos campos opcionais exceto id)
-export type UpdateAvaliacaoDto = Partial<Omit<Avaliacao, 'id'>> & { id: number };
+export type UpdateAvaliacaoDto = Partial<Omit<Avaliacao>> & { id: number };
