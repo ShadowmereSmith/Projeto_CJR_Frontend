@@ -38,7 +38,7 @@ export default function Register() {
         {/* lado esquerdo da tela */}
         <div className= 
             "w-4/7 h-full bg-cover bg-center" 
-            style={{ backgroundImage: "url('/imagens/raisedhand.jpg')" }}
+            style={{ backgroundImage: "url('/imagens/handshake.jpg')" }}
         ></div>
         {/* lado direito da tela */}
         <div className="w-3/7 flex flex-col items-center h-full bg-blue-900 px-16 pt-16" /*style={{ backgroundImage: "url('/imagens/bluebackground.jpg')"}} */>

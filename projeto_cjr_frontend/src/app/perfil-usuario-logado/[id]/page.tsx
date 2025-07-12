@@ -133,9 +133,6 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-col items-center justify-start gap-4 pt-5">
-                    <button className="bg-blue-600 text-white h-10 w-40 pt-0.5 rounded-lg border-3 border-blue-950  hover:bg-blue-700 hover:scale-105 transition-all duration-300">
-                        Editar Perfil
-                    </button>
                     
                     <button 
                       className="bg-blue-600 text-white text-sm h-8 w-30 pt-1 rounded-lg border-3 border-blue-950  hover:bg-blue-700 hover:scale-105 transition-all duration-300"

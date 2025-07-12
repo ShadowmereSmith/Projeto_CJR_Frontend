@@ -22,7 +22,7 @@ export default function HeaderLogado() {
     const confirmed = window.confirm('Tem certeza que deseja sair?');
     if (confirmed) {
       localStorage.removeItem('token');
-      router.push('/login');
+      router.push('/');
     }
   }
 
