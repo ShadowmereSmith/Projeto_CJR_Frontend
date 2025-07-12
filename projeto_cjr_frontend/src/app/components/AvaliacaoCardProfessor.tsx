@@ -19,7 +19,13 @@ export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDelete
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const irParaComentarios = () => {
-    router.push(`/comentarios-em-avaliacao/${avaliacao.id}`)
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push(`/comentarios-em-avaliacao-deslogado/${avaliacao.id}`)
+    }
+    else{
+      router.push(`/comentarios-em-avaliacao/${avaliacao.id}`)
+    }
   }
 
   const handleEdit = () => {

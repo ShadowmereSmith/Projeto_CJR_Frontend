@@ -12,18 +12,18 @@ const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
 type Props = {
   avaliacao: Avaliacao,
-  onDeleteMyComments: () => void
+  isEditavel: boolean,
+  onDeleteMyComments?: () => void
 }
 
-export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) {
+export default function AvaliacaoCard({ avaliacao, isEditavel, onDeleteMyComments }: Props) {
   const [isOpenComentario, setIsOpenComentario] = useState(false);
 
   const handleComentario = () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('Você precisa estar logado para comentar!');  
-    }
-    else{
+      alert('Você precisa estar logado para comentar!');
+    } else {
       setIsOpenComentario(true);
     }
   }
@@ -49,16 +49,22 @@ export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) 
             <p className="text-white mt-1">{avaliacao.conteudo}</p>
           </div>
         </div>
-        <div className="flex gap-3 text-white text-sm mt-1">
-          <button onClick={() => handleComentario()}>
-            <FaEdit className="cursor-pointer hover:scale-110 transition" />
-          </button>
-          <ModalComentario isOpen={isOpenComentario} idAvaliacao={avaliacao.id} onClose={() => setIsOpenComentario(false)}/>
-          {/* Botão da lixeira chama a função recebida por prop */}
-          <button onClick={onDeleteMyComments}>
-            <FaTrashAlt className="cursor-pointer hover:scale-110 transition" />
-          </button>
-        </div>
+
+        {isEditavel && (
+          <div className="flex gap-3 text-white text-sm mt-1">
+            <button onClick={handleComentario}>
+              <FaEdit className="cursor-pointer hover:scale-110 transition" />
+            </button>
+            <ModalComentario
+              isOpen={isOpenComentario}
+              idAvaliacao={avaliacao.id}
+              onClose={() => setIsOpenComentario(false)}
+            />
+            <button onClick={onDeleteMyComments}>
+              <FaTrashAlt className="cursor-pointer hover:scale-110 transition" />
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-2 mt-3 text-sm text-gray-300">

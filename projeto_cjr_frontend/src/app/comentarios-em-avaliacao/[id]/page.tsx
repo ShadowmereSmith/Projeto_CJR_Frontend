@@ -71,6 +71,7 @@ export default function ComentariosEmAvaliacaoPage({ params }: Props) {
           {avaliacao ? (
             <AvaliacaoCard
               avaliacao={avaliacao}
+              isEditavel={true}
               onDeleteMyComments={handleDeleteMyComments}
             />
           ) : (
