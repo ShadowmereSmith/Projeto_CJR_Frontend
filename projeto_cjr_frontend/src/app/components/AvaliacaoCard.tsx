@@ -18,6 +18,16 @@ type Props = {
 export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) {
   const [isOpenComentario, setIsOpenComentario] = useState(false);
 
+  const handleComentario = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Você precisa estar logado para comentar!');  
+    }
+    else{
+      setIsOpenComentario(true);
+    }
+  }
+
   return (
     <div className="bg-blue-900 text-white rounded-xl p-4 mb-6 shadow-md">
       <div className="flex justify-between items-start">
@@ -40,7 +50,7 @@ export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) 
           </div>
         </div>
         <div className="flex gap-3 text-white text-sm mt-1">
-          <button onClick={() => setIsOpenComentario(true)}>
+          <button onClick={() => handleComentario()}>
             <FaEdit className="cursor-pointer hover:scale-110 transition" />
           </button>
           <ModalComentario isOpen={isOpenComentario} idAvaliacao={avaliacao.id} onClose={() => setIsOpenComentario(false)}/>

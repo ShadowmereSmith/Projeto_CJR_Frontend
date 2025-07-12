@@ -10,7 +10,7 @@ type Props = {
 export default function CardProfessor({ professor }: Props) {
     const router = useRouter()
     const irParaAvaliacoes = () => {
-    router.push(`/avaliacoes-prof-logado/${professor.id}`)
+      router.push(`/avaliacoes-prof-logado/${professor.id}`)
     }
     return(
         <button className=" cursor-pointer hover:scale-105 transition-all duration-300" onClick={irParaAvaliacoes}>

@@ -1,91 +1,87 @@
+'use client';
+
 import HeaderDeslogado from "../components/HeaderDeslogado";
 import CardProfessor from "../components/cardProfessorDeslogado";
 import { Professor } from "@/types/professor"
 import { apiService } from '@/utils/api';
+import { useState, useEffect } from 'react';
 
-export default async function Home() {
+export default function Home() {
 
-  const professores: Professor[] = await apiService.getProfessores()
+  const [professores, setProfessores] = useState<Professor[]>([]);
+  const [professoresOriginais, setProfessoresOriginais] = useState<Professor[]>([]);
+  const [ordenarPorNome, setOrdenarPorNome] = useState(false);
+
+  const professoresExibidos = ordenarPorNome
+    ? [...professoresOriginais].sort((a, b) => a.nome.localeCompare(b.nome))
+    : professoresOriginais;
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await apiService.getProfessores();
+        setProfessores(response);
+        setProfessoresOriginais(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
-      <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto">
+      <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto pb-10">
         
-        <HeaderDeslogado/>
+        <HeaderDeslogado />
 
         <div>
-
           <div className="flex flex-row h-10 items-top justify-around pt-10">
-
             <div>
               <h1 className="font-bold text-4xl text-black">Novos Professores</h1>
             </div>
 
             <div className="relative flex flex-row items-center justify-center pt-5 gap-0">
-              <input type="text" placeholder="  Digite o nome do professor" className="h-8 w-70 bg-blue-300 
-                  rounded-xl border-3 border-blue-900 hover:scale-102 duration-300" />
-
-              <button className="cursor-pointer absolute right-2 bg-blue-300 rounded-full p-0 hover:bg-blue-400 transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
+              <input
+                type="text"
+                placeholder="  Digite o nome do professor"
+                className="h-8 w-70 bg-blue-300 rounded-xl border-3 border-blue-900 hover:scale-102 duration-300"
+                disabled
+              />
+              <button className="absolute right-2 cursor-pointer bg-blue-300 rounded-full p-0 hover:bg-blue-400 transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 50 50">
                   <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
                 </svg>
               </button>
             </div>
-
           </div>
 
           <div className="flex flex-row justify-center-safe pt-20 gap-10">
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="/sandro-curio.jpg"
-                  alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
-                <h2 className="text-2xl font-bold text-white">Sandro Curió</h2>
-                <p className="text-2sm text-white">Disciplina: Matemática</p>
-
-              </div>
-            </button>
-            
-            {professores.map((r, i) => (
+            {professores.slice(-5).map((r, i) => (
               <CardProfessor key={i} professor={r} />
             ))}
-
           </div>
 
-          <div className=" cursor-default flex flex-col items-center justify-center pt-3 text-black font-extrabold font-serif text-3xl">
+          <div className="cursor-default flex flex-col items-center justify-center pt-3 text-black font-extrabold font-serif text-3xl">
             <p>_____________________________________________</p>
           </div>
 
           <div className="flex flex-row items-center justify-around pt-10">
             <h1 className="font-bold text-4xl text-black">Todos os Professores</h1>
-            <button className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3
-                 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl">
-                  Ordenar</button>
+            <button
+              className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-35 h-12 border-3 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl"
+              onClick={() => setOrdenarPorNome(!ordenarPorNome)}
+            >
+              Ordenar
+            </button>
           </div>
 
-          <div className="grid grid-cols-5 pl-10 pr-10 pt-10  gap-10">
-
-            <button className="cursor-pointer hover:scale-105 transition-all duration-300">
-              <div className="flex flex-col items-center justify-center p-3 h-60 w-55 bg-blue-500 rounded-lg">
-
-                <img src="/sandro-curio.jpg"
-                  alt="Professor"
-                  className="h-35 w-35 mb-3 mt-1 rounded-full" />
-                <h2 className="text-2xl font-bold">Sandro Curió</h2>
-                <p className="text-2sm">Disciplina: Matemática</p>
-
-              </div>
-            </button>
-
-            {professores.map((r, i) => (
+          <div className="grid grid-cols-5 pl-10 pr-10 pt-10 gap-10">
+            {professoresExibidos.map((r, i) => (
               <CardProfessor key={i} professor={r} />
             ))}
-
           </div>
-
         </div>
-
       </main>
     </div>
   );
