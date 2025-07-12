@@ -1,29 +1,29 @@
 'use client'
 
 import * as FaIcons from 'react-icons/fa'
-const FaArrowLeft = FaIcons.FaArrowLeft as unknown as React.FC<any>
-
 import HeaderLogado from '@/app/components/HeaderLogado'
 import AvaliacaoCard from '@/app/components/AvaliacaoCard'
 import { apiService } from '../../../utils/api'
 import { Avaliacao } from '../../../types/avaliacao'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, use } from 'react'
 import { getUserIdFromToken } from '@/utils/auth'
 
+const FaArrowLeft = FaIcons.FaArrowLeft as unknown as React.FC<any>
+
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export default function ComentariosEmAvaliacaoPage({ params } : Props) {
+export default function ComentariosEmAvaliacaoPage({ params }: Props) {
+  const { id } = use(params)
   const [avaliacao, setAvaliacao] = useState<Avaliacao | null>(null)
   const [msg, setMsg] = useState('')
-  const id = parseInt(params.id)
   const userId = getUserIdFromToken()
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await apiService.getAvaliacao(id)
+        const response = await apiService.getAvaliacao(parseInt(id))
         setAvaliacao(response)
       } catch (error) {
         console.error(error)
@@ -32,28 +32,21 @@ export default function ComentariosEmAvaliacaoPage({ params } : Props) {
     fetchData()
   }, [id])
 
-  // Função para deletar todos os comentários do usuário logado
   async function handleDeleteMyComments() {
     setMsg('')
     if (!avaliacao) return
-
-    // Aceita tanto comentario.usuarioId quanto comentario.usuario.id
     const meusComentarios = avaliacao.comentarios.filter(c =>
       (c.usuarioId === userId) ||
       (c.usuario && c.usuario.id === userId)
     )
-
     if (meusComentarios.length === 0) {
       setMsg('Você não possui comentários para excluir.')
       return
     }
-
     try {
-      // Apaga todos os comentários do usuário logado daquela avaliação
       await Promise.all(meusComentarios.map(c =>
         apiService.deleteComentario(c.id, localStorage.getItem('token')!)
       ))
-      // Atualiza os comentários localmente
       setAvaliacao({
         ...avaliacao,
         comentarios: avaliacao.comentarios.filter(c =>
@@ -84,7 +77,6 @@ export default function ComentariosEmAvaliacaoPage({ params } : Props) {
             <p>Carregando avaliação...</p>
           )}
         </div>
-        {/* Mensagem de feedback */}
         {msg && (
           <div className="text-red-700 bg-red-100 rounded-lg p-2 m-4 text-center">
             {msg}

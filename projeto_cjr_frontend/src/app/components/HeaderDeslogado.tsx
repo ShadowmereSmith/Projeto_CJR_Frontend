@@ -14,9 +14,13 @@ export default function HeaderDeslogado() {
                 <Image src="/unb-logo.png" alt="UnB" width={70} height={80} />
             </div>
 
-            <button className="cursor-pointer bg-blue-600 text-white p-3 pt-1.5 mr-4 rounded-lg
-               w-35 h-12 border-3 border-white hover:bg-blue-500 hover:scale-105 transition-all duration-300 text-2xl">
-            Login</button>
+            <button 
+              className="cursor-pointer bg-blue-600 text-white p-3 pt-1.5 mr-4 rounded-lg
+               w-35 h-12 border-3 border-white hover:bg-blue-500 hover:scale-105 transition-all duration-300 text-2xl"
+              onClick={() => window.location.href = '/login'}
+            >
+              Login
+            </button>
 
         </div>
   )
