@@ -8,9 +8,10 @@ type ModalProps = {
   isOpen: boolean;
   avaliacao: Avaliacao;
   onClose: () => void;
+  onEdit?: () => void; // Callback opcional para atualizar a lista de avaliações após edição
 }
 
-export default function ModalEdicao({isOpen, avaliacao, onClose}: ModalProps) {
+export default function ModalEdicao({isOpen, avaliacao, onClose, onEdit}: ModalProps) {
   if (!isOpen) return null;
 
   const [comentario, setComentario] = useState(avaliacao.conteudo || '');
@@ -37,7 +38,8 @@ export default function ModalEdicao({isOpen, avaliacao, onClose}: ModalProps) {
       alert('Erro ao atualizar a avaliação. Tente novamente.');
     }
 
-    alert('Avaliação enviada com sucesso!');
+    alert('Avaliação editada com sucesso!');
+    onEdit?.(); // Chama o callback para atualizar a lista de avaliações, se fornecido
     onClose();
     console.log('Formulário enviado!'); 
   };

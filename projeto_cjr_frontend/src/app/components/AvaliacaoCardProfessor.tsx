@@ -9,9 +9,10 @@ type Props = {
   avaliacao: Avaliacao
   isEditavel: boolean
   onDeleted?: () => void // Callback para atualizar a lista de avaliações após exclusão
+  onEdit?: () => void // Callback para atualizar a lista de avaliações após edição
 }
 
-export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDeleted}: Props) {
+export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDeleted, onEdit}: Props) {
 
   const router = useRouter()
 
@@ -90,7 +91,7 @@ export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDelete
                 <img src="/icone-editar.png" alt="Editar"
                 className="w-6 h-6 cursor-pointer hover:scale-105 transition-all duration-300"></img>
               </button>}
-              <ModalEdicao isOpen={isModalOpen} avaliacao={avaliacao} onClose={() => setIsModalOpen(false)}/>
+              <ModalEdicao isOpen={isModalOpen} avaliacao={avaliacao} onClose={() => setIsModalOpen(false)} onEdit={() => onEdit?.()}/>
 
               {isEditavel && <button
                 onClick={handleDelete}

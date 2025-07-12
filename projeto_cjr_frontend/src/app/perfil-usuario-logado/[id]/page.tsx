@@ -58,23 +58,23 @@ export default function Home() {
     return decoded.sub;
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userId = await getUserIdFromToken();
-        if (!userId) {
-          console.error('Usuário não autenticado');
-          return;
-        }
-
-        const response = await apiService.getUser(userId);
-        setUsuario(response);
-        setAvaliacoes(response.avaliacoes || []);
-      } catch (error) {
-        console.error('Erro ao buscar usuário:', error);
+  const fetchUser = async () => {
+    try {
+      const userId = await getUserIdFromToken();
+      if (!userId) {
+        console.error('Usuário não autenticado');
+        return;
       }
-    };
 
+      const response = await apiService.getUser(userId);
+      setUsuario(response);
+      setAvaliacoes(response.avaliacoes || []);
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+    }
+  }
+
+  useEffect(() => {
     fetchUser();
   }, []);
 
@@ -83,6 +83,13 @@ export default function Home() {
   // e é chamada quando o usuário clica no botão de deletar avaliação
   const handleDeleteAvaliacao = (id: number) => {
     setAvaliacoes(prev => prev.filter(av => av.id !== id));
+  };
+
+  // serve para atualizar a página quando o componente AvaliacaoCardProfessor sofrer delete
+  // ela é passada como prop para o componente AvaliacaoCardProfessor
+  // e é chamada quando o usuário clica no botão de deletar avaliação
+  const handleEditAvaliacao = async (id: number) => {
+    await fetchUser(); // 🔁 atualiza as avaliações com dados mais recentes
   };
 
   return (
@@ -157,7 +164,7 @@ export default function Home() {
                 <div className="flex flex-col items-center justify-center gap-5 p-2 ">
                 
                   {avaliacoes.map((r: Avaliacao, i: number) => (
-                    <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={true} onDeleted={() => handleDeleteAvaliacao(r.id)}/>
+                    <AvaliacaoCardProfessor key={i} avaliacao={r} isEditavel={true} onDeleted={() => handleDeleteAvaliacao(r.id)} onEdit={() => handleEditAvaliacao(r.id)}/>
                   ))}
 
                 </div>
