@@ -1,12 +1,12 @@
 'use client'
 import Image from 'next/image'
+import { Comentario } from "@/types/comentario"
 
 type Props = {
-  usuario: string
-  conteudo: string
+  comentario: Comentario
 }
 
-export default function AvaliacaoComentario({ usuario, conteudo }: Props) {
+export default function AvaliacaoComentario({ comentario }: Props) {
   return (
     <div className="bg-blue-300 rounded-xl p-3">
       <div className="flex items-start gap-3">
@@ -19,8 +19,13 @@ export default function AvaliacaoComentario({ usuario, conteudo }: Props) {
         />
         <div>
 
-          <p className="text-blue-900 font-medium text-sm">{usuario}</p>
-          <p className="text-blue-800 text-sm">{conteudo}</p>
+          <p className="text-blue-900 font-medium text-sm">
+            {comentario.usuario.nome}{' '}
+            <span className="text-sm text-blue-900 ml-1">
+                · {comentario.updatedAt}
+              </span>
+            </p>
+          <p className="text-blue-800 text-sm">{comentario.conteudo}</p>
 
         </div>
       </div>
