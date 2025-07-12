@@ -1,23 +1,21 @@
 'use client'
 import Image from 'next/image'
 import * as FaIcons from 'react-icons/fa'
+import AvaliacaoComentario from './AvaliacaoComentario'
+import { Avaliacao } from '../../types/avaliacao'
+import ModalComentario from '../components/modalComentario'
+import { useState } from 'react'
 
 const FaRegCommentDots = FaIcons.FaRegCommentDots as unknown as React.FC<any>
 const FaEdit = FaIcons.FaEdit as unknown as React.FC<any>
 const FaTrashAlt = FaIcons.FaTrashAlt as unknown as React.FC<any>
 
-import AvaliacaoComentario from './AvaliacaoComentario'
-import { Avaliacao } from '../../types/avaliacao'
-import ModalComentario from '../components/modalComentario';
-import { useState, useEffect } from 'react';
-
-
 type Props = {
-  avaliacao: Avaliacao
+  avaliacao: Avaliacao,
+  onDeleteMyComments: () => void
 }
 
-export default function AvaliacaoCard({ avaliacao }: Props) {
-
+export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) {
   const [isOpenComentario, setIsOpenComentario] = useState(false);
 
   return (
@@ -46,7 +44,10 @@ export default function AvaliacaoCard({ avaliacao }: Props) {
             <FaEdit className="cursor-pointer hover:scale-110 transition" />
           </button>
           <ModalComentario isOpen={isOpenComentario} idAvaliacao={avaliacao.id} onClose={() => setIsOpenComentario(false)}/>
-          <FaTrashAlt className="cursor-pointer hover:scale-110 transition" />
+          {/* Botão da lixeira chama a função recebida por prop */}
+          <button onClick={onDeleteMyComments}>
+            <FaTrashAlt className="cursor-pointer hover:scale-110 transition" />
+          </button>
         </div>
       </div>
 

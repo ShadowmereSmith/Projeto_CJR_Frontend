@@ -51,7 +51,6 @@ const deleteUser = async (id: number): Promise<User> => {
   return response.data;
 };
 
-
 //
 // PROFESSOR
 //
@@ -80,7 +79,6 @@ const deleteProfessor = async (id: number): Promise<Professor> => {
   const response = await api.delete(`/professores/${id}`);
   return response.data;
 };
-
 
 //
 // DISCIPLINA
@@ -174,11 +172,13 @@ const updateComentario = async (dados: UpdateComentarioDto, id: number): Promise
   return response.data;
 };
 
-const deleteComentario = async (id: number): Promise<Comentario> => {
-  const response = await api.delete(`/comentarios/${id}`);
+// -------- ATENÇÃO AQUI: deleteComentario RECEBE O TOKEN E USA NO HEADER
+const deleteComentario = async (id: number, token: string) => {
+  const response = await api.delete(`/comentarios/${id}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
   return response.data;
 };
-
 
 //
 // AVALIAÇÃO
@@ -256,7 +256,7 @@ export const apiService = {
   getComentarios,
   getComentario,
   updateComentario,
-  deleteComentario,
+  deleteComentario, // <-- ATUALIZADO PARA RECEBER TOKEN!
   createAvaliacao,
   getAvaliacoes,
   getAvaliacao,
