@@ -60,10 +60,7 @@ export default function Home({ params }: Props) {
             <div className="flex flex-row items-start justify-between p-10 border-b-3 border-gray-800">
               <div className="flex flex-col items-start justify-start gap-2 pt-5">
                 <h1 className="text-3xl font-bold text-blue-900">{professor?.nome}</h1>
-                <div className="flex flex-row items-center justify-start gap-2">
-                  <Image src="/icone-email.png" alt="Email" width={28} height={24} />
-                  <p className="text-lg text-gray-800">professor@unb.org.br</p>
-                </div>
+
                 <div className="flex flex-row items-center justify-start gap-2">
                   <Image src="/icone-dept.webp" alt="Departamento" width={28} height={24} />
                   <p className="text-lg text-gray-800">{professor?.departamento}</p>

@@ -4,6 +4,7 @@ import { Avaliacao } from "@/types/avaliacao"
 import { apiService } from "@/utils/api"
 import { useState } from "react"
 import ModalEdicao from "./modalEdicao"
+import { FormatarData } from '@/utils/FormatarData'
 
 type Props = {
   avaliacao: Avaliacao
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDeleted, onEdit}: Props) {
+  const dataFormatada = FormatarData(avaliacao.updatedAt);
 
   const router = useRouter()
 
@@ -63,7 +65,7 @@ export default function AvaliacaoCardProfessor({ avaliacao, isEditavel, onDelete
             {avaliacao.usuario?.nome}
           </h3>
 
-          <p className="ml-3 text-sm"> • {avaliacao.updatedAt} • {avaliacao.professor?.nome} • {avaliacao.disciplina?.nome}</p>
+          <p className="ml-3 text-sm"> • {dataFormatada} • {avaliacao.professor?.nome} • {avaliacao.disciplina?.nome}</p>
 
         </div>
 

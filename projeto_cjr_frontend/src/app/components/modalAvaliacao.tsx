@@ -135,8 +135,8 @@ export default function ModalAvaliacao({ professores, isOpen, onClose }: ModalPr
             </div>
             <div className="h-px bg-blue-900 w-full"></div>
             <textarea
-              className="flex-grow w-full p-4 rounded-lg font-normal focus:outline-none resize-none"
-              placeholder="Escreva seu comentário aqui..."
+              className="flex-grow w-full p-4 rounded-lg font-normal focus:outline-none resize-none text-black"
+              placeholder="Escreva sua Avaliação aqui..."
               value={comentario}
               onChange={(e) => setComentario(e.target.value)}
             >

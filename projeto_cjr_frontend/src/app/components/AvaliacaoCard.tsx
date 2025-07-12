@@ -5,6 +5,7 @@ import AvaliacaoComentario from './AvaliacaoComentario'
 import { Avaliacao } from '../../types/avaliacao'
 import ModalComentario from '../components/modalComentario'
 import { useState } from 'react'
+import { FormatarData } from '@/utils/FormatarData'
 
 const FaRegCommentDots = FaIcons.FaRegCommentDots as unknown as React.FC<any>
 const FaEdit = FaIcons.FaEdit as unknown as React.FC<any>
@@ -18,6 +19,7 @@ type Props = {
 
 export default function AvaliacaoCard({ avaliacao, isEditavel, onDeleteMyComments }: Props) {
   const [isOpenComentario, setIsOpenComentario] = useState(false);
+  const dataFormatada = FormatarData(avaliacao.updatedAt);
 
   const handleComentario = () => {
     const token = localStorage.getItem('token');
@@ -43,7 +45,7 @@ export default function AvaliacaoCard({ avaliacao, isEditavel, onDeleteMyComment
             <p className="text-base font-medium text-white">
               {avaliacao.usuario.nome}{' '}
               <span className="text-sm text-gray-300 ml-1">
-                · {avaliacao.updatedAt} · {avaliacao.professor.nome} – {avaliacao.disciplina.nome}
+                • {dataFormatada} • {avaliacao.professor.nome} • {avaliacao.disciplina.nome}
               </span>
             </p>
             <p className="text-white mt-1">{avaliacao.conteudo}</p>

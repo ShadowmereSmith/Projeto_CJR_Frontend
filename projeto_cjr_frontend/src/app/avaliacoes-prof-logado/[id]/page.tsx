@@ -38,12 +38,6 @@ export default async function Home({ params }: Props) {
                     <h1 className="text-3xl font-bold text-blue-900">{professor.nome}</h1>
 
                     <div className="flex flex-row items-center justify-start gap-2">
-                        <img src="/icone-email.png" 
-                        alt="Email:" className="w-7 h-6"></img>
-                        <p className="text-lg text-gray-800">professor@unb.org.br</p>
-                    </div>
-
-                    <div className="flex flex-row items-center justify-start gap-2">
                         <img src="/icone-dept.webp" 
                         alt="Dept:" className="w-7 h-6"></img>
                         <p className="text-lg text-gray-800">{professor.departamento}</p>

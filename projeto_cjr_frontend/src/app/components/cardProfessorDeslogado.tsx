@@ -29,7 +29,7 @@ export default function CardProfessor({ professor }: Props) {
           height={140}
           className="rounded-full"
         />
-        <h2 className="text-2xl font-bold text-white">{professor.nome}</h2>
+        <h2 className="text-2xl font-bold text-white clamp-Two-Lines">{professor.nome}</h2>
 
       </div>
     </button>

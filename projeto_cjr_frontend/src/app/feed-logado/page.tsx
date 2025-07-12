@@ -24,10 +24,17 @@ export default function Page() {
   const [professoresOriginais, setProfessoresOriginais] = useState<Professor[]>([]); // salva o array original dos professores vindo do back
   const [ordenarPorNome, setOrdenarPorNome] = useState(false); // booleano que diz se está ordenando por nome ou não
   const [isOpenAvaliacao, setIsOpenAvaliacao] = useState(false);
+  const [pesquisa, setPesquisa] = useState('');
+  const [resultadoPesquisa, setResultadoPesquisa] = useState<Professor[]>(professoresOriginais);
+  const [isPesquisaAtiva, setIsPesquisaAtiva] = useState(false);
 
-  const professoresExibidos = ordenarPorNome // muda a exibição dos professores dependendo do booleano
-  ? [...professoresOriginais].sort((a, b) => a.nome.localeCompare(b.nome))
-  : professoresOriginais;
+  const professoresOrdenados = ordenarPorNome
+    ? [...professoresOriginais].sort((a, b) => a.nome.localeCompare(b.nome))
+    : professoresOriginais;
+
+  const professoresAtuais = isPesquisaAtiva && pesquisa.length > 0 && resultadoPesquisa.length > 0
+    ? resultadoPesquisa
+    : professoresOrdenados
 
   
 
@@ -44,6 +51,13 @@ export default function Page() {
     fetchData();
   }, );
 
+  useEffect(() => { // Filtra os professores com base na pesquisa
+    const filtrados = professoresOriginais.filter((profs) => 
+      profs.nome.toLowerCase().includes(pesquisa.toLowerCase())
+    );
+    setResultadoPesquisa(filtrados);
+  }, [pesquisa]);
+
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col bg-emerald-50 w-screen h-screen overflow-y-auto pb-10">
@@ -56,17 +70,6 @@ export default function Page() {
 
             <div>
               <h1 className="font-bold text-4xl text-black">Novos Professores</h1>
-            </div>
-
-            <div className="relative flex flex-row items-center justify-center pt-5 gap-0">
-              <input type="text" placeholder="  Digite o nome do professor" className="h-8 w-70 bg-blue-300 text-black
-                  rounded-xl border-3 border-blue-900 hover:scale-102 duration-300" />
-
-              <button className="absolute right-2 cursor-pointer bg-blue-300 rounded-full p-0 hover:bg-blue-400 transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
-                  <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
-                </svg>
-              </button>
             </div>
 
           </div>
@@ -84,8 +87,28 @@ export default function Page() {
           </div>
 
           <div className="flex flex-row items-center justify-around pt-10">
+
             <h1 className="font-bold text-4xl text-black">Todos os Professores</h1>
+
             <div className="flex flex-row items-center justify-center gap-5 pr-5">
+
+                <input 
+                type="text" 
+                placeholder="  Digite o nome do professor" 
+                className="h-8 w-70 bg-blue-300 text-black
+                  rounded-xl border-3 border-blue-900 hover:scale-102 duration-300"
+                value = {pesquisa}
+                onChange={(e) => setPesquisa(e.target.value)}
+                />
+
+                <button
+                  className={`cursor-pointer p-2 rounded-lg w-40 h-10 border-3 border-blue-900 text-sm transition-all duration-300
+                    ${isPesquisaAtiva ? 'bg-red-500 hover:bg-red-400' : 'bg-green-500 hover:bg-green-400'} text-white`}
+                  onClick={() => setIsPesquisaAtiva(!isPesquisaAtiva)}
+                >
+                  {isPesquisaAtiva ? 'Desativar Pesquisa' : 'Ativar Pesquisa'}
+                </button>
+
                 <button 
                   onClick={() => setIsOpenAvaliacao(true)}
                   className="cursor-pointer bg-blue-500 text-white p-2 rounded-lg w-50 h-12 border-3 border-blue-900 hover:bg-blue-400 hover:scale-105 transition-all duration-300 text-xl"
@@ -105,9 +128,19 @@ export default function Page() {
 
           <div className="grid grid-cols-5 pl-10 pr-10 pt-10  gap-10">
 
-            {professoresExibidos.map((r, i) => (
-              <CardProfessor key={i} professor={r} />
-            ))}
+            {professoresAtuais.length > 0 ? (
+                professoresAtuais.map((professor, id) => (
+                <CardProfessor key={id} professor={professor} />
+                ))
+              ) : (
+                (isPesquisaAtiva && pesquisa.length > 0 && resultadoPesquisa.length === 0) ? (
+                  <p className="col-span-5 text-center text-black text-xl">Nenhum professor encontrado com este nome.</p>
+                ) : (
+                professoresOrdenados.map((r, i) => (
+                <CardProfessor key={i} professor={r} />
+              ))
+              )
+            )}
 
           </div>
 
