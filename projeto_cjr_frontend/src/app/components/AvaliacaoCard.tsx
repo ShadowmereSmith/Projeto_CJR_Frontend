@@ -58,7 +58,7 @@ export default function AvaliacaoCard({ avaliacao, onDeleteMyComments }: Props) 
 
       <div className="mt-4 space-y-2 pl-4 border-l-2 border-blue-200">
         {avaliacao.comentarios.map((r, i) => (
-          <AvaliacaoComentario key={i} usuario={r.usuario.nome} conteudo={r.conteudo} />
+          <AvaliacaoComentario key={i} comentario={r}/>
         ))}
       </div>
     </div>
