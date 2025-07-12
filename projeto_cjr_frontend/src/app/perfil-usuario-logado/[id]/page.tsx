@@ -20,6 +20,10 @@ export default function Home() {
 
   const router = useRouter();
 
+  const handleVoltar = () => {
+    router.back();
+  };
+
   const handleTrocarSenha = () => {
     const token = localStorage.getItem('token');
 
@@ -101,7 +105,9 @@ export default function Home() {
         <div className="flex flex-row">
 
         <div className="mt-5 mr-5 h-20 w-20 cursor-pointer">
-                  <button className=" cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300">
+                  <button 
+                    onClick={handleVoltar}
+                    className=" cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300">
                     <img src = "/seta-voltar.png" alt = "Voltar"></img>
                   </button>
         </div>

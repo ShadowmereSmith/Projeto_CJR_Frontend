@@ -11,6 +11,12 @@ export default function Home() {
   const [novaSenha, setNovaSenha] = useState('');
   const [confirmaSenha, setConfirmaSenha] = useState('');
 
+  const router = useRouter();
+
+  const handleVoltar = () => {
+    router.back();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -59,8 +65,11 @@ export default function Home() {
         <div className="flex flex-row">
 
           <div className="mt-5 mr-5 h-20 w-20 cursor-pointer">
-            <button className="cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300">
-              <img src="/seta-voltar.png" alt="Voltar" />
+            <button 
+              className="cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300"
+              onClick={handleVoltar}
+              >
+                <img src="/seta-voltar.png" alt="Voltar" />
             </button>
           </div>
 

@@ -2,6 +2,7 @@ import { Professor } from '../../../types/professor'
 import { apiService } from '../../../utils/api'
 import AvaliacaoCardProfessor from '../../components/AvaliacaoCardProfessor'
 import HeaderLogado from '@/app/components/HeaderLogado'
+import BotaoVoltar from '@/app/components/botaoVoltar'
 
 type Props = {
   params: { id: string }
@@ -10,7 +11,7 @@ type Props = {
 export default async function Home({ params }: Props) {
   const id = parseInt(params.id)
   const professor: Professor = await apiService.getProfessor(id)
-  
+
   return (
     <div className="flex font-[family-name:var(--font-geist-sans)]">
       <main className="flex-col items-center justify-center place-items-center bg-emerald-50 w-screen h-screen overflow-y-auto">
@@ -20,9 +21,7 @@ export default async function Home({ params }: Props) {
         <div className="flex flex-row">
 
         <div className="mt-5 mr-5 h-20 w-20 cursor-pointer">
-                  <button className=" cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300">
-                    <img src = "/seta-voltar.png" alt = "Voltar"></img>
-                  </button>
+          <BotaoVoltar />
         </div>
 
         <div className="flex flex-col min-h-screen w-2xl bg-white border-r-3 border-l-3 border-gray-800">

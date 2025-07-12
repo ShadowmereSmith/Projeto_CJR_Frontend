@@ -18,6 +18,10 @@ export default function Home({ params }: Props) {
   const [professor, setProfessor] = useState<Professor | null>(null);
   const router = useRouter();
 
+  const handleVoltar = () => {
+    router.back();
+  };
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -37,7 +41,7 @@ export default function Home({ params }: Props) {
         <div className="flex flex-row">
           <div className="mt-5 mr-5 h-20 w-20">
             <button
-              onClick={() => router.back()}
+              onClick={handleVoltar}
               className="cursor-pointer flex items-center justify-center p-2 rounded-full hover:bg-emerald-200 transition-all duration-300"
             >
               <Image src="/seta-voltar.png" alt="Voltar" width={40} height={40} />
